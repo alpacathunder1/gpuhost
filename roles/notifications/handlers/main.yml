@@ -1,0 +1,6 @@
+---
+- name: Restart mailrise
+  become: true
+  ansible.builtin.service:
+    name: mailrise
+    state: restarted

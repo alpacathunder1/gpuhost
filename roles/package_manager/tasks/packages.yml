@@ -1,0 +1,28 @@
+---
+- name: Install yay using makepkg if it isn't installed already
+  kewlfft.aur.aur:
+    # Uses makepkg to install yay
+    # https://github.com/kewlfft/ansible-aur#examples
+    name: yay
+    use: makepkg
+    state: present
+  become: true
+  become_user: aur_builder
+- name: Install packages
+  become: true
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-pipx # This is needed for mailrise.
+    - base-devel # This is needed for yay.
+    - iucode-tool # This is needed for needrestart microcode update notifications: https://github.com/fritz-fritz/needrestart/blob/master/README.uCode.md#intel
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    - reflector # This picks the best arch mirror.
+    - needrestart # This lets you know what services need to be restarted.

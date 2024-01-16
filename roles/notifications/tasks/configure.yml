@@ -1,0 +1,48 @@
+---
+- name: Generate mail.rc
+  become: true
+  ansible.builtin.copy:
+    content: >
+      set ask askcc append dot save crt
+
+      ignore Received Message-Id Resent-Message-Id Status Mail-From Return-Path
+      Via Delivered-To
+
+      set mta=/usr/bin/msmtp
+    dest: /etc/mail.rc
+    group: root
+    mode: "0644"
+    owner: root
+- name: Generate Aliases
+  become: true
+  ansible.builtin.template:
+    src: aliases.j2
+    dest: /etc/aliases
+    group: root
+    mode: "0644"
+    owner: root
+- name: Generate msmtprc
+  become: true
+  ansible.builtin.template:
+    src: msmtprc.j2
+    dest: /etc/msmtprc
+    group: root
+    mode: "0644"
+    owner: root
+- name: Add the mailrise login
+  become: true
+  ansible.builtin.user:
+    name: mailrise
+    shell: /usr/bin/nologin
+    system: true
+    create_home: false
+    home: /
+- name: Mailrise config
+  become: true
+  ansible.builtin.template:
+    dest: /etc/mailrise.conf
+    group: mailrise
+    mode: "0640"
+    owner: mailrise
+    src: mailrise.conf.j2
+  notify: Restart mailrise

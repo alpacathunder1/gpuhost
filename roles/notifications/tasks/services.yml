@@ -1,0 +1,16 @@
+---
+- name: Mailrise systemd unit
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/mailrise.service
+    group: root
+    mode: "0644"
+    owner: root
+    src: mailrise.service
+  notify: Restart mailrise
+- name: Enable mailrise.service
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: mailrise.service
+    state: started

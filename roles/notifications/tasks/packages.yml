@@ -1,0 +1,19 @@
+---
+- name: Install packages
+  become: true
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - msmtp
+    - msmtp-mta
+    - s-nail
+- name: Install packages
+  become: true
+  community.general.pipx:
+    name: "{{ item }}"
+  environment:
+    PIPX_BIN_DIR: /usr/local/bin/
+    PIPX_HOME: /var/lib/pipx/
+  with_items:
+    - mailrise

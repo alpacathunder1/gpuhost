@@ -1,0 +1,39 @@
+---
+- name: Created global environment variable for neovim
+  ansible.builtin.lineinfile:
+    group: root
+    line: EDITOR=nvim
+    mode: "0644"
+    owner: root
+    path: /etc/environment
+  become: true
+- name: Create view shortcut
+  become: true
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      exec /usr/bin/nvim -R "$@"
+    dest: /usr/local/bin/view
+    group: root
+    mode: "0755"
+    owner: root
+- name: Create vim shortcut
+  become: true
+  ansible.builtin.copy:
+    content: |
+      #!/bin/bash
+      exec /usr/bin/nvim "$@"
+    dest: /usr/local/bin/vim
+    group: root
+    mode: "0755"
+    owner: root
+- name: Create vi shortcut
+  become: true
+  ansible.builtin.copy:
+    content: |
+      #!/bin/bash
+      exec /usr/bin/nvim "$@"
+    dest: /usr/local/bin/vi
+    group: root
+    mode: "0755"
+    owner: root

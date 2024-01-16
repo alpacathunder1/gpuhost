@@ -1,0 +1,321 @@
+<domain type='kvm'>
+  {#
+  Whatever you want
+  #}
+  <name>{{ vm_name }}</name>
+  {#
+  Just a random uuid, can be generated with:
+  `cat /proc/sys/kernel/random/uuid`
+  #}
+  <uuid>{{ vm_uuid }}</uuid>
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://microsoft.com/win/11"/>
+    </libosinfo:libosinfo>
+  </metadata>
+  {#
+  I set this in the 'boot' role.
+  We can check this with:
+  `grep "Hugepagesize:" /proc/meminfo`
+  Multiply this number by the number of hugepages and set the vm memory
+  #}
+  <memory unit='KiB'>{{ vm_memory }}</memory>
+  <currentMemory unit='KiB'>{{ vm_memory }}</currentMemory>
+  {#
+  Static Hugepages:
+  https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#Static_huge_pages
+  #}
+  <memoryBacking>
+    <hugepages/>
+  </memoryBacking>
+  {#
+  Similar to this Reddit user's setup:
+  https://www.reddit.com/r/VFIO/comments/wx855g/working_intel_alder_lake_setup_on_a_12700k/
+  #}
+  <vcpu placement='static'>16</vcpu>
+  <iothreads>1</iothreads>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='0'/>
+    <vcpupin vcpu='1' cpuset='1'/>
+    <vcpupin vcpu='2' cpuset='2'/>
+    <vcpupin vcpu='3' cpuset='3'/>
+    <vcpupin vcpu='4' cpuset='4'/>
+    <vcpupin vcpu='5' cpuset='5'/>
+    <vcpupin vcpu='6' cpuset='6'/>
+    <vcpupin vcpu='7' cpuset='7'/>
+    <vcpupin vcpu='8' cpuset='8'/>
+    <vcpupin vcpu='9' cpuset='9'/>
+    <vcpupin vcpu='10' cpuset='10'/>
+    <vcpupin vcpu='11' cpuset='11'/>
+    <vcpupin vcpu='12' cpuset='12'/>
+    <vcpupin vcpu='13' cpuset='13'/>
+    <vcpupin vcpu='14' cpuset='14'/>
+    <vcpupin vcpu='15' cpuset='15'/>
+    <emulatorpin cpuset='16-17'/>
+    <iothreadpin iothread='1' cpuset='16-17'/>
+  </cputune>
+  {#
+  Windows 11 requires secure boot be "capable", but not necessarily enabled
+  https://support.microsoft.com/en-us/windows/windows-11-and-secure-boot-a8ff1202-c0d9-42f5-940f-843abef64fad
+  
+  Although I was able to get some EFI support despite some of these firmware features (it booted fine), I believe
+  that this matches Microsoft's specs.
+
+  This explains some of the options;
+  https://libvirt.org/kbase/secureboot.html
+
+  I believe actual Secure Boot requires enrolling keys which I took at whack at but gave up.  Maybe in the future.
+  #}
+  <os firmware='efi'>
+    {#
+    If this is set to "q35", it'll just reseolve to the latest q35 type.
+    While it's good to stay updated, it's probably best to let it pin a particular version after testing
+    I verified "pc-q35-8.1" works well, and am going to test "pc-q35-8.2" now.
+    #}
+    <type arch='x86_64' machine='pc-q35-8.2'>hvm</type>
+    <firmware>
+      <feature enabled='no' name='enrolled-keys'/>
+      <feature enabled='yes' name='secure-boot'/>
+    </firmware>
+    {#
+    I believe the 4m is just a larger file, and gives "...more space for UEFI variables"
+    https://wiki.archlinux.org/index.php?title=PCI_passthrough_via_OVMF&diff=796222&oldid=794576
+    #}
+    <loader readonly='yes' secure='yes' type='pflash'>/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
+    <nvram template='/usr/share/edk2/x64/OVMF_VARS.4m.fd'>/var/lib/libvirt/qemu/nvram/{{ vm_name }}_VARS.fd</nvram>
+    <bootmenu enable='no'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    {#
+    VRChat--of all places, has some really good notes for vms
+    https://docs.vrchat.com/docs/using-vrchat-in-a-virtual-machine
+
+    Basically "This will enable all available hyper-v enlightenments that are available for your kernel/QEMU version"
+    #}
+    <hyperv mode='passthrough'>
+    </hyperv>
+    <vmport state='off'/>
+    {#
+    smm is needed for secure boot
+    #}
+    <smm state='on'/>
+    <ioapic driver='kvm'/>
+  </features>
+  {#
+  This one is a bit confusing to me.
+  Host passthrough exposes everything from the CPU, even things that "libvirt does not understand":
+  https://libvirt.org/formatdomain.html#resource-partitioning
+  
+  If you just set it to 'host-passthrough', libvirt will disable check but enable migratable.  So I can assume I do not need 'check'.
+  
+  Apparently migration was not always enabled by default.
+  https://patchew.org/Libvirt/cover.1591380619.git.jdenemar@redhat.com/1c84c692f75dd612e5e606d13231576ef61a38eb.1591380620.git.jdenemar@redhat.com/
+
+  Since I believe I want as many features as possible, I believe this is a good setup.
+
+  This matches the host setup, minus the cores not allocated to the vm
+  #}
+  <cpu mode='host-passthrough' check='none' migratable='off'>
+    <topology sockets='1' dies='1' cores='8' threads='2'/>
+    {#
+    Not sure, couldn't find a ton of into.  I'm assuming passthrough is best. 
+    https://libvirt.org/formatdomain.html#cpu-allocation
+    
+    "The real CPU cache data reported by the host CPU will be passed through to the virtual CPU."
+    This seems to have been set manually.
+
+    After setting it to passthrough, I can set see the L3 cache via the Coreinfo tool in the Windows VM
+    https://forum.level1techs.com/t/performance-in-a-vm/168691/10
+
+    Here's what I got:
+
+    Logical Processor to Cache Map:
+    **--------------  Data Cache          0, Level 1,   32 KB, Assoc   8, LineSize  64
+    **--------------  Instruction Cache   0, Level 1,   64 KB, Assoc   8, LineSize  64
+    ********--------  Unified Cache       0, Level 2,    2 MB, Assoc  16, LineSize  64
+    ****************  Unified Cache       1, Level 3,   25 MB, Assoc  10, LineSize  64
+    --**------------  Data Cache          1, Level 1,   32 KB, Assoc   8, LineSize  64
+    --**------------  Instruction Cache   1, Level 1,   64 KB, Assoc   8, LineSize  64
+    ----**----------  Data Cache          2, Level 1,   32 KB, Assoc   8, LineSize  64
+    ----**----------  Instruction Cache   2, Level 1,   64 KB, Assoc   8, LineSize  64
+    ------**--------  Data Cache          3, Level 1,   32 KB, Assoc   8, LineSize  64
+    ------**--------  Instruction Cache   3, Level 1,   64 KB, Assoc   8, LineSize  64
+    --------**------  Data Cache          4, Level 1,   32 KB, Assoc   8, LineSize  64
+    --------**------  Instruction Cache   4, Level 1,   64 KB, Assoc   8, LineSize  64
+    --------********  Unified Cache       2, Level 2,    2 MB, Assoc  16, LineSize  64
+    ----------**----  Data Cache          5, Level 1,   32 KB, Assoc   8, LineSize  64
+    ----------**----  Instruction Cache   5, Level 1,   64 KB, Assoc   8, LineSize  64
+    ------------**--  Data Cache          6, Level 1,   32 KB, Assoc   8, LineSize  64
+    ------------**--  Instruction Cache   6, Level 1,   64 KB, Assoc   8, LineSize  64
+    --------------**  Data Cache          7, Level 1,   32 KB, Assoc   8, LineSize  64
+    --------------**  Instruction Cache   7, Level 1,   64 KB, Assoc   8, LineSize  64
+    Most importantly, the "Level 3 Cache" seems to be 25MB of my processor (i7-12700K)
+    #}
+    <cache mode='passthrough'/>
+  </cpu>
+  {# This another one one that I've been having some trouble optimizing 
+  These seems to be a good default, and apparently helps with keeping host CPU low while idle
+  https://www.jochendelabie.com/2020/05/15/hyper-v-enlightenments-with-libvirt/
+  #}
+  <clock offset='localtime'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='no'/>
+    <timer name='hypervclock' present='yes'/>
+    {# tsc seems to be a good default.  it's not in every config, but 
+    + https://github.com/mateussouzaweb/kvm-qemu-virtualization-guide/blob/master/Docs/5%20-%20XML%20Configurations.md#windows-enhancements
+    + https://gist.github.com/roobre/8f2d86a51a6b619a6622a64a58f9fc94
+    #}
+    <timer name='tsc' present='yes' mode='native'/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <controller type='usb' index='0' model='qemu-xhci' ports='15'>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='pci' index='0' model='pcie-root'/>
+    <controller type='pci' index='1' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='1' port='0x10'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='2' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='2' port='0x11'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
+    </controller>
+    <controller type='pci' index='3' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='3' port='0x12'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
+    </controller>
+    <controller type='pci' index='4' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='4' port='0x13'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x3'/>
+    </controller>
+    <controller type='pci' index='5' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='5' port='0x14'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x4'/>
+    </controller>
+    <controller type='pci' index='6' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='6' port='0x15'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x5'/>
+    </controller>
+    <controller type='pci' index='7' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='7' port='0x16'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x6'/>
+    </controller>
+    <controller type='pci' index='8' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='8' port='0x17'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x7'/>
+    </controller>
+    <controller type='pci' index='9' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='9' port='0x18'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='10' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='10' port='0x19'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x1'/>
+    </controller>
+    <controller type='pci' index='11' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='11' port='0x1a'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x2'/>
+    </controller>
+    <controller type='pci' index='12' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='12' port='0x1b'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x3'/>
+    </controller>
+    <controller type='pci' index='13' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='13' port='0x1c'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x4'/>
+    </controller>
+    <controller type='pci' index='14' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='14' port='0x1d'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x5'/>
+    </controller>
+    {#
+    Needed for various qemu stuff, such as the guest agent
+    https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/html/virtual_machine_management_guide/installing_guest_agents_and_drivers_windows
+    #}
+    <controller type='virtio-serial' index='0'>
+      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='sata' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+    </controller>
+    {#
+    bridge network, created with network manager on the host
+    #}
+    <interface type='bridge'>
+      <mac address='{{ vm_mac }}'/>
+      <source bridge='br0'/>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+    </interface>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    {#
+    Not sure if tpm passthrough makes any difference vs emulated, but its there
+    #}
+    <tpm model='tpm-tis'>
+      <backend type='passthrough'>
+        <device path='/dev/tpm0'/>
+      </backend>
+    </tpm>
+    <audio id='1' type='none'/>
+    {#
+    Your GPU (video)
+    #}
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>
+        <address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
+    </hostdev>
+    {#
+    Your GPU (audio)
+    #}
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>
+        <address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
+    </hostdev>
+    {#
+    Passthrough of nvme drive from my host for the boot drive
+    #}
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>
+        <address domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
+      </source>
+      <boot order='1'/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+    </hostdev>
+    {#
+    Every time I removed the watchdog it reappears 🤷.  I have no idea if I need it.
+    #}
+    <watchdog model='itco' action='reset'/>
+    <memballoon model='none'/>
+  </devices>
+</domain>
+

@@ -1,0 +1,7 @@
+---
+- name: Enable the ufw service
+  ansible.builtin.systemd:
+    enabled: true
+    name: ufw.service
+    state: started
+  become: true

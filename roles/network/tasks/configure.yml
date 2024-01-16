@@ -1,0 +1,20 @@
+---
+- name: Create networkmanager conf.d
+  become: true
+  ansible.builtin.file:
+    group: root
+    mode: "0755"
+    owner: root
+    path: /etc/NetworkManager/conf.d
+    state: directory
+- name: Add dnsmasq conf
+  become: true
+  ansible.builtin.copy:
+    content: |
+      [main]
+      dns=dnsmasq
+    dest: /etc/NetworkManager/conf.d/dns.conf
+    group: root
+    mode: "0644"
+    owner: root
+  notify: Reload nmcli

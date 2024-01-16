@@ -1,0 +1,50 @@
+---
+- name: Create systemd-boot directories
+  become: true
+  ansible.builtin.file:
+    group: root
+    mode: "0700"
+    owner: root
+    path: /boot/loader/entries
+    state: directory
+- name: Add loader.conf
+  become: true
+  ansible.builtin.copy:
+    content: |
+      default arch.conf
+      timeout 4
+      console-mode max
+      editor no
+    dest: /boot/loader/loader.conf
+    group: root
+    mode: "0700"
+    owner: root
+- name: Add arch.conf
+  become: true
+  ansible.builtin.template:
+    src: arch.conf.j2
+    dest: /boot/loader/entries/arch.conf
+    group: root
+    mode: "0700"
+    owner: root
+  notify: Run bootctl install
+- name: Mkinitcpio vfio (+ext4)
+  become: true
+  notify: Run mkinitcpio
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: ^MODULES=
+    line: MODULES=(ext4 vfio_pci vfio vfio_iommu_type1)
+- name: Add arch-fallback.conf
+  become: true
+  ansible.builtin.copy:
+    content: |
+      title Arch Linux (fallback initramfs)
+      linux /vmlinuz-linux-lts
+      initrd /intel-ucode.img
+      initrd /initramfs-linux-lts-fallback.img
+      options root="LABEL=arch_os" rw
+    dest: /boot/loader/entries/arch-fallback.conf
+    group: root
+    mode: "0700"
+    owner: root

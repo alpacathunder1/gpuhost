@@ -1,0 +1,9 @@
+---
+- name: Blacklist the nouveau driver module
+  become: true
+  community.general.kernel_blacklist:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - iwlwifi
+    - btusb

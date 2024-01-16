@@ -1,0 +1,75 @@
+---
+- name: Install sudo
+  become: true
+  community.general.pacman:
+    name: sudo
+    state: present
+- name: Adding ansible_user to wheel group
+  become: true
+  ansible.builtin.user:
+    append: "yes"
+    groups: wheel
+    name: "{{ ansible_user }}"
+- name: Adding root to sudoers
+  become: true
+  ansible.builtin.copy:
+    content: |
+      root    ALL=(ALL:ALL) ALL
+    dest: /etc/sudoers.d/01-root-sudo
+    group: root
+    mode: "0440"
+    owner: root
+    validate: /usr/sbin/visudo -cf %s
+- name: Adding pwfeedback
+  become: true
+  ansible.builtin.copy:
+  # Empty characters when typing password
+    content: |
+      Defaults        pwfeedback
+    dest: /etc/sudoers.d/02-pwfeedback
+    group: root
+    mode: "0440"
+    owner: root
+    validate: /usr/sbin/visudo -cf %s
+- name: Making sure wheel group can sudo
+  become: true
+  ansible.builtin.copy:
+    content: |
+      %wheel ALL=(ALL:ALL) ALL
+    dest: /etc/sudoers.d/03-group
+    group: root
+    mode: "0440"
+    owner: root
+    validate: /usr/sbin/visudo -cf %s
+- name: Remove mail_badpass from sudoer
+  ansible.builtin.replace:
+  # This ensures I don't get pinged every time I typo my password.
+    group: root
+    mode: "0440"
+    owner: root
+    path: /etc/sudoers
+    regexp: (^Defaults.*mail_badpass$)
+    replace: ""
+    validate: /usr/sbin/visudo -cf %s
+  become: true
+- name: Removing ALL sudo rule
+  ansible.builtin.replace:
+    group: root
+    mode: "0440"
+    owner: root
+    path: /etc/sudoers
+    regexp: ^ALL.*ALL=\(ALL\) ALL
+    replace: "#"
+    validate: /usr/sbin/visudo -cf %s
+  become: true
+- name: Removing targetpw rule sudo
+  ansible.builtin.replace:
+  # This ensures that sudo asks for user password, and not the root password.
+    group: root
+    mode: "0440"
+    owner: root
+    path: /etc/sudoers
+    regexp: (^Defaults.*targetpw)
+    replace: ""
+    validate: /usr/sbin/visudo -cf %s
+  become: true

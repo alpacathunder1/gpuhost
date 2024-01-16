@@ -1,0 +1,24 @@
+---
+- name: Create pwrstatd.service.d directory
+  become: true
+  ansible.builtin.file:
+    group: root
+    mode: "0755"
+    owner: root
+    path: /etc/systemd/system/pwrstatd.service.d
+    state: directory
+- name: Add pwrstatd override
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/pwrstatd.service.d/override.conf
+    group: root
+    mode: "0644"
+    owner: root
+    src: override.conf
+  notify: Reload systemd
+- name: Enable pwrstatd.service
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: pwrstatd.service
+    state: started

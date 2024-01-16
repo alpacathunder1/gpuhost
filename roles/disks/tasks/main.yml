@@ -1,0 +1,3 @@
+---
+- name: Configure services
+  ansible.builtin.include_tasks: services.yml

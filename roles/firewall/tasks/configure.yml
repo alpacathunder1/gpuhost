@@ -1,0 +1,25 @@
+---
+- name: Enable IPv6 ufw
+  become: true
+  ansible.builtin.lineinfile:
+    line: IPV6=yes
+    path: /etc/default/ufw
+    regex: ^IPV6=
+  notify: Restart ufw
+- name: Set logging to not spam dmesg
+  become: true
+  community.general.ufw:
+    logging: "off"
+  notify: Restart ufw
+- name: Allow SSH through ufw
+  become: true
+  community.general.ufw:
+  # I would put this in the SSH module, but since the firewall needs to get installed first I'd rather have it here so I can enable the firewall in the module.
+  # There's likely a more elegant way to do this.
+    port: "22"
+    proto: tcp
+    rule: allow
+- name: Allow enable UFW
+  become: true
+  community.general.ufw:
+    state: enabled

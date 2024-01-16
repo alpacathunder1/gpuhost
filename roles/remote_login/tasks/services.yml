@@ -1,0 +1,7 @@
+---
+- name: Enable the sshd service
+  ansible.builtin.systemd:
+    enabled: true
+    name: sshd.service
+    state: started
+  become: true

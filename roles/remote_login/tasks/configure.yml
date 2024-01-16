@@ -1,0 +1,44 @@
+---
+- name: Create .ssh directory
+  ansible.builtin.file:
+    group: "{{ ansible_user }}"
+    mode: "0700"
+    owner: "{{ ansible_user }}"
+    path: "{{ ansible_user_dir }}/.ssh"
+    state: directory
+- name: Set up multiple authorized keys
+  ansible.posix.authorized_key:
+    key: "{{ item }}"
+    state: present
+    user: "{{ ansible_user }}"
+  with_file:
+    - Laptop.pub
+    - Phone.pub
+    - Desktop.pub
+- name: Make sure SSH Port is correct
+  become: true
+  ansible.builtin.lineinfile:
+    line: Port 22
+    path: /etc/ssh/sshd_config
+    regex: "^#Port "
+  notify: Restart sshd
+- name: Disable Password Authentication
+  become: true
+  ansible.builtin.lineinfile:
+    line: PasswordAuthentication no
+    path: /etc/ssh/sshd_config
+    regex: "^#PasswordAuthentication "
+  notify: Restart sshd
+- name: Enable Pubkey Authentication
+  become: true
+  ansible.builtin.lineinfile:
+    line: PubkeyAuthentication yes
+    path: /etc/ssh/sshd_config
+    regex: "^#PubkeyAuthentication "
+- name: Block root login
+  become: true
+  notify: Restart sshd
+  ansible.builtin.replace:
+    path: /etc/ssh/sshd_config
+    regexp: ^PermitRootLogin
+    replace: "#PermitRootLogin"

@@ -1,0 +1,7 @@
+---
+- name: Enable the cronie service
+  ansible.builtin.systemd:
+    enabled: true
+    name: cronie.service
+    state: started
+  become: true

@@ -1,0 +1,20 @@
+---
+- name: Playbook for gpuhost
+  hosts: gpuhost
+  vars_files:
+    - vars/public.yml
+    - vars/vault.yml
+  roles:
+    - role: system
+    - role: package_manager
+    - role: jobs
+    - role: firewall
+    - role: remote_login
+    - role: version_control
+    - role: editor
+    - role: notifications
+    - role: disks
+    - role: network
+    - role: virtualization
+    - role: ups
+    - role: boot

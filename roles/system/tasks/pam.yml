@@ -1,0 +1,6 @@
+---
+- name: Disable Faillock for PAM
+  become: true
+  ansible.builtin.lineinfile:
+    line: deny = 0
+    path: /etc/security/faillock.conf

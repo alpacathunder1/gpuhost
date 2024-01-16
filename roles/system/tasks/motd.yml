@@ -1,0 +1,9 @@
+---
+- name: Clearing motd
+  become: true
+  ansible.builtin.copy:
+    content: ""
+    dest: /etc/motd
+    group: root
+    mode: "0644"
+    owner: root

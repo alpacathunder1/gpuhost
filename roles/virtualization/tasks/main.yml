@@ -1,0 +1,8 @@
+---
+- name: Install packages
+  ansible.builtin.include_tasks: packages.yml
+- name: Configure  services
+  ansible.builtin.include_tasks: services.yml
+- name: Write configuration
+  tags: update-vm
+  ansible.builtin.include_tasks: configure.yml

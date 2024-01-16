@@ -1,0 +1,10 @@
+---
+- name: Restart pwrstatd
+  become: true
+  ansible.builtin.service:
+    name: pwrstatd
+    state: restarted
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true

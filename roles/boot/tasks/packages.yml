@@ -1,0 +1,13 @@
+---
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+  # I genuinely cannot remember why I found it necessary to install this.
+  # From what I researched just now systemd-boot does not get updated, even when systemd gets updated, as the files are generated manually.
+  # This hook just runs the bootctl command every systemd upgrade:
+  # https://wiki.archlinux.org/title/Systemd-boot#pacman_hook
+    - systemd-boot-pacman-hook

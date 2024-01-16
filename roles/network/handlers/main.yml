@@ -1,0 +1,6 @@
+---
+- name: Reload nmcli
+  become: true
+  changed_when: true
+  ansible.builtin.command:
+    cmd: nmcli general reload

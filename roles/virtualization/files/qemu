@@ -1,0 +1,43 @@
+#!/bin/sh
+# The framework for this was likely taken from this Reddit post:
+# https://www.reddit.com/r/VFIO/comments/wx855g/working_intel_alder_lake_setup_on_a_12700k/
+command=$2
+if [ "$command" = "started" ]; then
+    # This allows only the (non-P?) cores, on the hypervisor.
+    systemctl set-property --runtime -- system.slice AllowedCPUs=16-19
+    systemctl set-property --runtime -- user.slice AllowedCPUs=16-19
+    systemctl set-property --runtime -- init.scope AllowedCPUs=16-19
+    # Tune-down Linux virtual memory stats:
+    # https://forum.proxmox.com/threads/hey-proxmox-community-lets-talk-about-resources-isolation.124256/
+    sysctl vm.stat_interval=120
+    # "the kernel's dirty page writeback mechanism uses kthread workers. They introduce massive arbitrary latencies when doing disk writes on the host and
+    # aren't migrated by cset. Restrict the workqueue to use only cpu 0.":
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo 1 | tee /sys/devices/virtual/workqueue/cpumask
+    echo 0 | tee /sys/bus/workqueue/devices/writeback/numa
+    # Default is powersafe.  Taken from:
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    # "THP can allegedly result in jitter. Better keep it off."
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo never | tee /sys/kernel/mm/transparent_hugepage/enabled
+elif [ "$command" = "release" ]; then
+    # This allows only the (non-P?) cores, on the hypervisor.
+    systemctl set-property --runtime -- system.slice AllowedCPUs=0-19
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-19
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0-19
+    # Tune-down Linux virtual memory stats:
+    # https://forum.proxmox.com/threads/hey-proxmox-community-lets-talk-about-resources-isolation.124256/
+    sysctl vm.stat_interval=1
+    # "the kernel's dirty page writeback mechanism uses kthread workers. They introduce massive arbitrary latencies when doing disk writes on the host and
+    # aren't migrated by cset. Restrict the workqueue to use only cpu 0.":
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo fffff | tee /sys/devices/virtual/workqueue/cpumask
+    echo 1 | tee /sys/bus/workqueue/devices/writeback/numa
+    # Default is powersafe.  Taken from:
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo powersave | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    # "THP can allegedly result in jitter. Better keep it off.":
+    # https://gist.github.com/p7cq/08f457d8ee071f009d8d8bfe8c98bea0
+    echo always | tee /sys/kernel/mm/transparent_hugepage/enabled
+fi

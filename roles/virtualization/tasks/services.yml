@@ -1,0 +1,12 @@
+---
+- name: Enable libvirtd
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: libvirtd.service
+- name: Enable libvirtd
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: libvirtd.socket
+    state: started

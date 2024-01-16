@@ -1,0 +1,22 @@
+---
+- name: Copy pwrstatd.conf for {{ hostname }}
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/pwrstatd.conf
+    group: root
+    mode: "0644"
+    owner: root
+    src: pwrstatd.conf
+  notify: Restart pwrstatd
+- name: Copy shutdown script for {{ hostname }}
+  become: true
+  ansible.builtin.copy:
+    dest: /usr/local/sbin/shutdown.sh
+    group: root
+    mode: "0750"
+    owner: root
+    content: |
+      #!/bin/bash
+      echo Power Failure on $(cat /etc/hostname)\!  Shutting down | msmtp root
+      systemctl poweroff
+  notify: Restart pwrstatd

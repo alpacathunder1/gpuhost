@@ -1,0 +1,16 @@
+---
+- name: Install packages
+  become: true
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-lxml
+    - edk2-ovmf
+    - gnu-netcat
+    - swtpm
+    - dmidecode
+    - dnsmasq
+    - libvirt
+    - qemu-base
+    - libvirt-python
