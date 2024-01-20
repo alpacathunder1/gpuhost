@@ -14,7 +14,6 @@
   with_file:
     - Laptop.pub
     - Phone.pub
-    - Desktop.pub
 - name: Make sure SSH Port is correct
   become: true
   ansible.builtin.lineinfile:
