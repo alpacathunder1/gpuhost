@@ -312,6 +312,16 @@
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </hostdev>
     {#
+    Wireless device passthrough
+    #}
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>
+        <address domain='0x0000' bus='0x00' slot='0x14' function='0x3'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+    </hostdev>
+    <watchdog model='itco' action='reset'/>
+    {#
     Every time I removed the watchdog it reappears 🤷.  I have no idea if I need it.
     #}
     <watchdog model='itco' action='reset'/>
