@@ -1,5 +1,5 @@
 ---
-- name: Blacklist the nouveau driver module
+- name: Blacklist wifi/bluetooth
   become: true
   community.general.kernel_blacklist:
     name: "{{ item }}"
