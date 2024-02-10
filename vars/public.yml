@@ -8,5 +8,5 @@ lan_domain: gpuhost
 lan_port: 22
 mailrise_domain: mailrise
 username: alex
-vm_memory: 28311552
+vm_memory: 33554432
 vm_name: gpuguest
