@@ -7,4 +7,4 @@
 --merge-output-format mkv
 -P temp:~/.cache/
 -i -o "%(title)s.%(ext)s"
--f "bestvideo*[height<=1080][vcodec!^=av01]+bestaudio/best"
+-f "bestvideo*[height<=2160][vcodec!^=av01]+bestaudio/best"
