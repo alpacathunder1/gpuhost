@@ -3,7 +3,6 @@ email: ataylor@posteo.us
 fullname: Alex Taylor
 gpu_audio_id: 10de:1aef
 gpu_video_id: 10de:2208
-radio_id: 8086:7af0
 hostname: gpuhost
 lan_domain: gpuhost
 lan_port: 22

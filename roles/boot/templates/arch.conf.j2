@@ -15,4 +15,4 @@ initrd /initramfs-linux-lts.img
   https://www.reddit.com/r/VFIO/comments/zqesqm/psa_use_split_lock_detectoff_to_avoid_substantial/
 
 #}
-options root="LABEL=arch_os" rw iommu=pt intel_iommu=on default_hugepagesz=1G hugepagesz=1G hugepages=33 vfio-pci.ids={{ gpu_video_id }},{{ gpu_audio_id }},{{ radio_id }} split_lock_detect=off
+options root="LABEL=arch_os" rw iommu=pt intel_iommu=on default_hugepagesz=1G hugepagesz=1G hugepages=33 vfio-pci.ids={{ gpu_video_id }},{{ gpu_audio_id }} split_lock_detect=off

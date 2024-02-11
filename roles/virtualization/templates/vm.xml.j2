@@ -312,13 +312,14 @@
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </hostdev>
     {#
-    Wireless device passthrough
+    Bluetooth device passthrough (is usb)
     #}
-    <hostdev mode='subsystem' type='pci' managed='yes'>
+    <hostdev mode='subsystem' type='usb' managed='yes'>
       <source>
-        <address domain='0x0000' bus='0x00' slot='0x14' function='0x3'/>
+        <vendor id='0x8087'/>
+        <product id='0x0026'/>
       </source>
-      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+      <address type='usb' bus='0' port='1'/>
     </hostdev>
     {#
     Every time I removed the watchdog it reappears 🤷.  I have no idea if I need it.
