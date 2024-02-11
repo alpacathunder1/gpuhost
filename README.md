@@ -23,15 +23,6 @@ this is my gaming/gpu/vfio/windows11/parsec hypervisor box
       + br0/network bridging
       + As well as rfkill/disabling radios
 
-
-## Notes
-
-+ After every vm change, the libvirt definition may need to be reset
-
-```bash
-sudo virsh undefine --nvram `#your vm name`
-```
-
 ## TODO
 
 + Read test on a clean arch installation
