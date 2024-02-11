@@ -1,0 +1,17 @@
+---
+- name: Create yt-dlp config directory
+  become: false
+  ansible.builtin.file:
+    group: "{{ ansible_group }}"
+    mode: "0755"
+    owner: "{{ ansible_user }}"
+    path: ~/.config/yt-dlp
+    state: directory
+- name: Copy copy yt-dlp config
+  become: false
+  ansible.builtin.copy:
+    src: yt-dlp
+    dest: ~/.config/yt-dlp/config
+    group: "{{ ansible_group }}"
+    mode: "0644"
+    owner: "{{ ansible_user }}"
