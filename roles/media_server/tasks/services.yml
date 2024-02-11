@@ -1,0 +1,7 @@
+---
+- name: Enable plexmediaserver.service
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: plexmediaserver.service
+    state: started

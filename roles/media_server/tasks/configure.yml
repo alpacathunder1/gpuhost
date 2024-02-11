@@ -1,0 +1,7 @@
+---
+- name: Allow Plex through ufw
+  become: true
+  community.general.ufw:
+    port: "32400"
+    proto: tcp
+    rule: allow
