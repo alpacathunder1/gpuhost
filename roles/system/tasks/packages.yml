@@ -8,3 +8,5 @@
     - intel-ucode
     - bash
     - bash-completion
+    - htop
+    - screen
