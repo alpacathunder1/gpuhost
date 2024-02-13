@@ -34,6 +34,7 @@ this is my gaming/gpu/vfio/windows11/parsec hypervisor box
     ```
 ## TODO
 
++ Test zfs mail
 + Read test on a clean arch installation
 + Set up NetworkManager bridge & static ip through ansible
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)

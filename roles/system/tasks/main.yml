@@ -13,3 +13,5 @@
   ansible.builtin.include_tasks: sudo.yml
 - name: Configure kernel
   ansible.builtin.include_tasks: kernel.yml
+- name: Install packages
+  ansible.builtin.include_tasks: packages.yml
