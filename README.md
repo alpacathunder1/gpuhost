@@ -32,6 +32,14 @@ this is my gaming/gpu/vfio/windows11/parsec hypervisor box
     # I can't remember if actually used an rfkill command
     nmcli radio wifi off
     ```
+### ZFS
+
+Pool was created with
+
+```bash
+sudo zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
+```
+
 ## TODO
 
 + Test zfs mail
