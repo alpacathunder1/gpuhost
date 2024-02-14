@@ -42,6 +42,9 @@ zpool set cachefile=/etc/zfs/zpool.cache
 zfs set mountpoint=none tank 
 zfs create tank/plex
 zfs set mountpoint=/mnt/plex tank/plex
+zfs create tank/borg
+sudo zfs set com.sun:auto-snapshot=false tank/borg
+zfs set mountpoint=/mnt/borg tank/borg
 ```
 
 ## TODO
