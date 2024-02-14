@@ -4,3 +4,8 @@
   changed_when: true
   ansible.builtin.command:
     cmd: mkinitcpio -p linux-lts
+- name: Enable zfs import cache
+  become: true
+  changed_when: true
+  ansible.builtin.command:
+    cmd: zpool set cachefile=/etc/zfs/zpool.cache {{ zfs_zpool }}

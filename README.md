@@ -37,7 +37,8 @@ this is my gaming/gpu/vfio/windows11/parsec hypervisor box
 Pool was created with
 
 ```bash
-sudo zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
+zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
+zpool set cachefile=/etc/zfs/zpool.cache
 ```
 
 ## TODO
