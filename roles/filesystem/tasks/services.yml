@@ -10,3 +10,4 @@
     - zfs-import-cache.service
     - zfs.target
     - zfs-import.target
+    - zfs-mount.service

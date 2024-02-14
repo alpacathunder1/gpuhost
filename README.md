@@ -34,11 +34,12 @@ this is my gaming/gpu/vfio/windows11/parsec hypervisor box
     ```
 ### ZFS
 
-Pool was created with
+Pool was created with:
 
 ```bash
 zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
 zpool set cachefile=/etc/zfs/zpool.cache
+sudo zfs set mountpoint=none tank 
 ```
 
 ## TODO
