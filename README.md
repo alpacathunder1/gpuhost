@@ -47,8 +47,7 @@ zfs set mountpoint=/mnt/plex tank/plex
 ## TODO
 
 + Add ansible_group var + fix roles to use
-+ Test Plex hardware transcoding with iGPU
-+ Configure ytdl_sub + system timer/unit
++ Configure ytdl_sub systemd timer/unit
 + Run on a clean arch installation (+ set up RAID1)
 + Set up NetworkManager bridge & static ip through ansible
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)
