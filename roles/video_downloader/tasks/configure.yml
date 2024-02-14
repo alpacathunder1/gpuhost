@@ -2,7 +2,7 @@
 - name: Create yt-dlp config directory
   become: false
   ansible.builtin.file:
-    group: "{{ ansible_group }}"
+    group: "{{ ansible_user }}"
     mode: "0755"
     owner: "{{ ansible_user }}"
     path: ~/.config/yt-dlp
@@ -12,7 +12,7 @@
   ansible.builtin.copy:
     src: yt-dlp
     dest: ~/.config/yt-dlp/config
-    group: "{{ ansible_group }}"
+    group: "{{ ansible_user }}"
     mode: "0644"
     owner: "{{ ansible_user }}"
 - name: Add the ytdl-sub login
