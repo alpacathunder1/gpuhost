@@ -35,7 +35,6 @@
   become: true
   ansible.builtin.copy:
     src: ytdl-sub-subscriptions
-    decrypt: true
     dest: /etc/ytdl-sub/subscriptions.yml
     group: ytdl-sub
     mode: "0644"

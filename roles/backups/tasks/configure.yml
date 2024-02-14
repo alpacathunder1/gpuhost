@@ -1,7 +1,6 @@
 ---
 - name: Create borgmatic config directory
   become: true
-  decrypt: true
   ansible.builtin.file:
     group: root
     mode: "0600"
