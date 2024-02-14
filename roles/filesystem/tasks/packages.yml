@@ -7,3 +7,4 @@
     name: "{{ item }}"
   with_items:
     - zfs-linux-lts
+    - zfs-auto-snapshot

@@ -39,7 +39,9 @@ Pool was created with:
 ```bash
 zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
 zpool set cachefile=/etc/zfs/zpool.cache
-sudo zfs set mountpoint=none tank 
+zfs set mountpoint=none tank 
+zfs create tank/plex
+zfs set mountpoint=/mnt/plex tank/plex
 ```
 
 ## TODO

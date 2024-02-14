@@ -11,3 +11,4 @@
     - zfs.target
     - zfs-import.target
     - zfs-mount.service
+    - zfs-zed.service
