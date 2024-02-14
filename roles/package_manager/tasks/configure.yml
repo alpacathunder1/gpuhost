@@ -35,5 +35,5 @@
     group: root
     mode: "0755"
     owner: root
-    path: /etc/pacman.d/hooks 
+    path: /etc/pacman.d/hooks
     state: directory

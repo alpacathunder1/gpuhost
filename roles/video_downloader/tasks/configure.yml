@@ -23,3 +23,28 @@
     system: true
     create_home: false
     home: /
+- name: Add the ytdl-sub config directory
+  become: true
+  ansible.builtin.file:
+    group: ytdl-sub
+    mode: "0755"
+    owner: ytdl-sub
+    path: /etc/ytdl-sub
+    state: directory
+- name: Copy copy yt-dlp subscriptions
+  become: true
+  ansible.builtin.copy:
+    src: ytdl-sub-subscriptions
+    decrypt: true
+    dest: /etc/ytdl-sub/subscriptions.yml
+    group: ytdl-sub
+    mode: "0644"
+    owner: ytdl-sub
+- name: Copy copy yt-dlp config
+  become: true
+  ansible.builtin.copy:
+    src: ytdl-sub-config
+    dest: /etc/ytdl-sub/config.yml
+    group: ytdl-sub
+    mode: "0644"
+    owner: ytdl-sub

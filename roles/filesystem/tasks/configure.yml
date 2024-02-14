@@ -4,8 +4,8 @@
   notify: Run mkinitcpio
   ansible.builtin.copy:
     content: |
-      options zfs_arc_min={{ zfs_memory_min }}
-      options zfs_arc_max={{ zfs_memory_max }}
+      options zfs zfs_arc_min={{ zfs_memory_min }}
+      options zfs zfs_arc_max={{ zfs_memory_max }}
     dest: /etc/modprobe.d/zfs-ansible.conf
     group: root
     mode: "0644"
