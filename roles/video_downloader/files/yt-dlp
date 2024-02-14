@@ -5,6 +5,6 @@
 --embed-metadata
 --remux-video mkv
 --merge-output-format mkv
--P temp:~/.cache/
+-P temp:/tmp
 -i -o "%(title)s.%(ext)s"
 -f "bestvideo*[height<=2160][vcodec!^=av01]+bestaudio/best"
