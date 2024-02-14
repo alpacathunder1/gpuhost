@@ -10,3 +10,4 @@
     - bash-completion
     - htop
     - screen
+    - rsync
