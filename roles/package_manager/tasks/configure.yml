@@ -29,3 +29,11 @@
     owner: root
     path: /var/lib/pipx
     state: directory
+- name: Create directory for pacman hooks
+  become: true
+  ansible.builtin.file:
+    group: root
+    mode: "0755"
+    owner: root
+    path: /etc/pacman.d/hooks 
+    state: directory

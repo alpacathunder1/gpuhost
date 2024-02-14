@@ -46,7 +46,6 @@ zfs set mountpoint=/mnt/plex tank/plex
 
 ## TODO
 
-+ Test zfs mail
 + Setup ytdl_sub + system timer/unit
 + Read test on a clean arch installation
 + Set up NetworkManager bridge & static ip through ansible
