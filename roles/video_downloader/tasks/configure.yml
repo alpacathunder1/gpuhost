@@ -21,8 +21,8 @@
     name: ytdl-sub
     shell: /usr/bin/nologin
     system: true
-    create_home: false
-    home: /
+    create_home: true
+    home: /var/lib/ytdl-sub
 - name: Add the ytdl-sub config directory
   become: true
   ansible.builtin.file:
