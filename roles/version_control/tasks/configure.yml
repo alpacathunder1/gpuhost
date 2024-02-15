@@ -4,6 +4,6 @@
   ansible.builtin.template:
     src: gitconfig.j2
     dest: "{{ ansible_user_dir }}/.gitconfig"
-    group: "{{ ansible_user }}"
+    group: "{{ ansible_group }}"
     mode: "0644"
     owner: "{{ ansible_user }}"

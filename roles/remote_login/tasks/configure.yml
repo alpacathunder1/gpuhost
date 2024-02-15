@@ -1,7 +1,7 @@
 ---
 - name: Create .ssh directory
   ansible.builtin.file:
-    group: "{{ ansible_user }}"
+    group: "{{ ansible_group }}"
     mode: "0700"
     owner: "{{ ansible_user }}"
     path: "{{ ansible_user_dir }}/.ssh"

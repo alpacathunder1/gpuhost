@@ -49,7 +49,6 @@ zfs set mountpoint=/mnt/borg tank/borg
 
 ## TODO
 
-+ Add ansible_group var + fix roles to use
 + Configure ytdl_sub systemd timer/unit
 + Run on a clean arch installation (+ set up RAID1)
 + Set up NetworkManager bridge & static ip through ansible
