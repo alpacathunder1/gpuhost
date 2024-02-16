@@ -1,2 +1,14 @@
 configuration:
-  working_directory: "/tmp"
+  working_directory: '/var/lib/ytdl-sub/working'
+  persist_logs:
+    logs_directory: '/var/lib/ytdl-sub/logs'
+    keep_successful_logs: False
+presets:
+  no_shorts:
+    match_filters:
+      filters:
+        - "original_url!*=/shorts/"
+  base:
+    preset:
+      - "best_video_quality"
+      - "chunk_initial_download"

@@ -26,9 +26,9 @@
 - name: Add the ytdl-sub config directory
   become: true
   ansible.builtin.file:
-    group: ytdl-sub
+    group: root
     mode: "0755"
-    owner: ytdl-sub
+    owner: root
     path: /etc/ytdl-sub
     state: directory
 - name: Copy copy yt-dlp subscriptions
@@ -36,14 +36,30 @@
   ansible.builtin.copy:
     src: ytdl-sub-subscriptions
     dest: /etc/ytdl-sub/subscriptions.yml
-    group: ytdl-sub
+    group: root
     mode: "0644"
-    owner: ytdl-sub
+    owner: root
 - name: Copy copy yt-dlp config
   become: true
   ansible.builtin.copy:
     src: ytdl-sub-config
     dest: /etc/ytdl-sub/config.yml
-    group: ytdl-sub
+    group: root
     mode: "0644"
+    owner: root
+- name: Add the ytdl-sub log directory
+  become: true
+  ansible.builtin.file:
+    group: ytdl-sub
+    mode: "0755"
     owner: ytdl-sub
+    path: /var/lib/ytdl-sub/logs
+    state: directory
+- name: Add the ytdl-sub working directory
+  become: true
+  ansible.builtin.file:
+    group: ytdl-sub
+    mode: "0755"
+    owner: ytdl-sub
+    path: /var/lib/ytdl-sub/working
+    state: directory
