@@ -58,9 +58,10 @@ vdirsyncer sync
 
 ## TODO
 
-+ Test MDADM emails once raid is setup
-+ Setup vdirsyncer/bitwarden
-+ Configure ytdl_sub systemd timer/unit
 + Run on a clean arch installation (+ set up RAID1)
-+ Set up NetworkManager bridge & static ip through ansible
+  + Test MDADM emails once raid is setup
++ Setup vdirsyncer/bitwarden
+  + Add `source ~/.bw-session  && vdirsyncer sync -v `#XYZ` cronjob
++ Set up smartd (ignoring nvme drives) 
++ Configure ytdl_sub systemd timer/unit
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)
