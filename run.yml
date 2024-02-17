@@ -13,7 +13,6 @@
     - role: version_control
     - role: editor
     - role: notifications
-    - role: disks
     - role: network
     - role: virtualization
     - role: ups

@@ -1,4 +1,10 @@
 ---
+- name: Enable fstrim.timer
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: fstrim.timer
+    state: started
 - name: Enable the zfs services
   notify: Enable zfs import cache
   ansible.builtin.systemd:

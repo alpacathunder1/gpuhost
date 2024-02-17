@@ -49,6 +49,7 @@ zfs set mountpoint=/mnt/borg tank/borg
 
 ## TODO
 
++ Test MDADM emails once raid is setup
 + Setup vdirsyncer/bitwarden
 + Configure ytdl_sub systemd timer/unit
 + Run on a clean arch installation (+ set up RAID1)

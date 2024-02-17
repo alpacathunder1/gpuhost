@@ -1,4 +1,16 @@
 ---
+- name: Add mailaddr to mdadm conf
+  become: true
+  ansible.builtin.lineinfile:
+    line: MAILADDR root
+    path: /etc/mdadm.conf
+    regex: ^MAILADDR
+- become: true
+  name: Enable mdmonitor-oneshot timer
+  service:
+    enabled: 'yes'
+    name: mdmonitor-oneshot.timer
+    state: started
 - name: Limit zfs memory
   become: true
   notify: Run mkinitcpio
