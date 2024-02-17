@@ -6,6 +6,18 @@
     state: present
   with_items:
     - neovim
+    - emacs
+    - fd
+    - ripgrep
+    - cmake
+    - ispell
+    - vdirsyncer
+    - khal
+    - graphviz
+    - neovim
+    - pandoc
+    - texlive-core
+    - shellcheck
 - name: Remove packages
   become: true
   community.general.pacman:
@@ -14,3 +26,13 @@
   with_items:
     - nano
     - vim
+- name: Ensure Doom is present
+  ansible.builtin.git:
+    repo: https://github.com/hlissner/doom-emacs
+    dest: ~/.config/emacs
+  notify: Run doom install
+- name: Ensure Doom config is present
+  ansible.builtin.git:
+    repo: "{{ doom_config }}"
+    dest: ~/.config/doom
+  notify: Run doom install
