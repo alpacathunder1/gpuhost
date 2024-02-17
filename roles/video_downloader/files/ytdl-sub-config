@@ -13,3 +13,4 @@ presets:
         - "original_url!*=/shorts/"
     ytdl_options:
       max_downloads: 250
+      break_on_existing: False
