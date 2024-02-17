@@ -22,3 +22,4 @@
     - role: media_server
     - role: video_downloader
     - role: backups
+    - role: file_manager

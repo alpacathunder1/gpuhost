@@ -5,10 +5,5 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - intel-ucode
-    - bash
-    - bash-completion
-    - htop
-    - screen
-    - rsync
-    - man-db
+    - ranger
+    - mediainfo
