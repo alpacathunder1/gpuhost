@@ -1,3 +1,5 @@
 ---
 - name: Install packages
   ansible.builtin.include_tasks: packages.yml
+- name: Write configuration
+  ansible.builtin.include_tasks: configure.yml

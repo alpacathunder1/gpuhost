@@ -47,6 +47,15 @@ sudo zfs set com.sun:auto-snapshot=false tank/borg
 zfs set mountpoint=/mnt/borg tank/borg
 ```
 
+## vdirsyncer
+
+Sync was started with
+
+```bash
+yes | vdirsyncer discover
+vdirsyncer sync
+```
+
 ## TODO
 
 + Test MDADM emails once raid is setup

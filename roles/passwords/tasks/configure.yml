@@ -1,0 +1,8 @@
+---
+- name: Create .bw-session file
+  ansible.builtin.file:
+    group: "{{ ansible_group }}"
+    mode: "0400"
+    owner: "{{ ansible_user }}"
+    path: "{{ ansible_user_dir }}/.bw-session"
+    content: "{{ bw_session }}"
