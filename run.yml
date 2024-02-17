@@ -6,6 +6,7 @@
     - vars/vault.yml
   roles:
     - role: system
+    - role: config_management
     - role: package_manager
     - role: jobs
     - role: firewall
