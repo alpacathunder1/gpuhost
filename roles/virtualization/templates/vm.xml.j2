@@ -306,11 +306,20 @@
     #}
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
-        <address domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
+        <address domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
       </source>
       <boot order='1'/>
-      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
     </hostdev>
+    {#
+    USB Card
+    #}
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>                         
+        <address domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>         
+      </source>  
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+    </hostdev>      
     {#
     Every time I removed the watchdog it reappears 🤷.  I have no idea if I need it.
     #}
