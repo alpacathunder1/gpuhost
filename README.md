@@ -1,4 +1,4 @@
-this is my gaming/gpu/vfio/windows11/parsec hypervisor box
+this is my desktop/gaming/gpu/vfio/windows11/parsec hypervisor box
 
 ## Required
 
@@ -64,5 +64,6 @@ vdirsyncer sync
 + Setup vdirsyncer/bitwarden
   + Add `source ~/.bw-session  && vdirsyncer sync -v `#XYZ` cronjob
 + Set up smartd (ignoring nvme drives) 
++ Populate boot entries in install guide
 + Configure ytdl_sub systemd timer/unit
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)
