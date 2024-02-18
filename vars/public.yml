@@ -8,6 +8,7 @@ hostname: desktop
 lan_domain: desktop
 lan_port: 22
 mailrise_domain: mailrise
+usb_card_id: 1912:0014
 username: alex
 vm_memory: 33554432
 vm_name: gpuguest
