@@ -1,8 +1,4 @@
-{#
-I need the 'xmlns' part to do extra qemu options
-https://www.reddit.com/r/VFIO/comments/iz1yvs/pretty_new_to_this_can_anyone_help_with_a_virsh/
-#}
-<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0>
+<domain type='kvm'>
   {#
   Whatever you want
   #}
@@ -336,11 +332,5 @@ https://www.reddit.com/r/VFIO/comments/iz1yvs/pretty_new_to_this_can_anyone_help
     #}
     <memballoon model='none'/>
   </devices>
-  {#
-  This fixes ther error 10 when passing through your bluetooth device
-  <qemu:capabilities>
-    <qemu:del capability="usb-host.hostdevice"/>
-  </qemu:capabilities>
-  #}
 </domain>
 
