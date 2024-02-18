@@ -12,6 +12,7 @@ usb_card_id: 1912:0014
 username: alex
 vm_memory: 33554432
 vm_name: gpuguest
+vm_nvme_iommu: "0000:07:00.0"
 zfs_zpool: tank
 zfs_memory_min: 0
 zfs_memory_max: 8589934592

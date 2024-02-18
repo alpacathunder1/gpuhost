@@ -21,6 +21,21 @@
     group: root
     mode: "0755"
     owner: root
+- name: Add script to isolate nvme
+  become: true
+  ansible.builtin.template:
+    src: vfio-pci-override.sh.j2
+    dest: /usr/local/bin/vfio-pci-override.sh
+    group: root
+    mode: "0755"
+    owner: root
+- name: Mkinitcpio hooks
+  become: true
+  notify: Run mkinitcpio
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: ^FILES=
+    line: FILES=(/usr/local/bin/vfio-pci-override.sh)
 - name: Define vm from xml
   become: true
   tags: update-vm

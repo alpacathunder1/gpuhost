@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.file:
     group: root
-    mode: "0700"
+    mode: "750"
     owner: root
     path: /boot/loader/entries
     state: directory
@@ -17,7 +17,7 @@
       editor no
     dest: /boot/loader/loader.conf
     group: root
-    mode: "0700"
+    mode: "0640"
     owner: root
 - name: Add arch.conf
   become: true
@@ -25,18 +25,12 @@
     src: arch.conf.j2
     dest: /boot/loader/entries/arch.conf
     group: root
-    mode: "0700"
+    mode: "0640"
     owner: root
   notify: Run bootctl install
-- name: Mkinitcpio vfio (+ext4)
-  become: true
-  notify: Run mkinitcpio
-  ansible.builtin.lineinfile:
-    path: /etc/mkinitcpio.conf
-    regexp: ^MODULES=
-    line: MODULES=(ext4 vfio_pci vfio vfio_iommu_type1)
 - name: Add arch-fallback.conf
   become: true
+  notify: Run bootctl install
   ansible.builtin.copy:
     content: |
       title Arch Linux (fallback initramfs)
@@ -46,5 +40,12 @@
       options root="LABEL=arch_os" rw
     dest: /boot/loader/entries/arch-fallback.conf
     group: root
-    mode: "0700"
+    mode: "0640"
     owner: root
+- name: Mkinitcpio vfio (+ext4)
+  become: true
+  notify: Run mkinitcpio
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: ^MODULES=
+    line: MODULES=(ext4 vfio_pci vfio vfio_iommu_type1)

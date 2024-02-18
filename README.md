@@ -59,12 +59,11 @@ vdirsyncer sync
 ## TODO
 
 + locale-gen
-+ Add shell role with bash options (like `set -o vi`)
 + Run on a clean arch installation (+ set up RAID1)
   + Test MDADM emails once raid is setup
 + Setup vdirsyncer/bitwarden
   + Add `source ~/.bw-session  && vdirsyncer sync -v `#XYZ` cronjob
-+ Set up smartd (ignoring nvme drives) 
++ Add shell role with bash options (like `set -o vi`)
 + Populate boot entries in install guide
 + Configure ytdl_sub systemd timer/unit
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)

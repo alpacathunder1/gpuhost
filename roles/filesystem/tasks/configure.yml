@@ -1,4 +1,11 @@
 ---
+- name: Setup smartd mail
+  become: true
+  notify: Restart smartd
+  ansible.builtin.lineinfile:
+    line: DEVICESCAN -m root
+    path: /etc/smartd.conf
+    regex: ^DEVICESCAN
 - name: Mkinitcpio hooks
   become: true
   notify: Run mkinitcpio
