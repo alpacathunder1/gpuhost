@@ -58,6 +58,7 @@ vdirsyncer sync
 
 ## TODO
 
++ locale-gen
 + Add shell role with bash options (like `set -o vi`)
 + Run on a clean arch installation (+ set up RAID1)
   + Test MDADM emails once raid is setup

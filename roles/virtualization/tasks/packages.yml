@@ -14,3 +14,4 @@
     - libvirt
     - qemu-base
     - libvirt-python
+    - qemu-hw-usb-host
