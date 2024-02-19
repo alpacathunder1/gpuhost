@@ -1,7 +1,26 @@
 ---
+- name: Create plexmediaserver.service.d directory
+  become: true
+  ansible.builtin.file:
+    group: root
+    mode: "0755"
+    owner: root
+    path: /etc/systemd/system/plexmediaserver.service.d
+    state: directory
+- name: Add plexmediaserver override
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/plexmediaserver.service.d/override.conf
+    group: root
+    mode: "0644"
+    owner: root
+    src: override.conf
+  notify: "{{ item }}"
+  with_items:
+    - Reload systemd
+    - Restart plexmediaserver
 - name: Enable plexmediaserver.service
   become: true
   ansible.builtin.service:
     enabled: "yes"
     name: plexmediaserver.service
-    state: started
