@@ -58,7 +58,9 @@ vdirsyncer sync
 
 ## TODO
 
-+ locale-gen
++ try non-lvm raid installation
++ fix bizarre 90 second hang when rebooting
++ locale-gen role setup
 + Setup vdirsyncer/bitwarden
   + Add `source ~/.bw-session  && vdirsyncer sync -v `#XYZ` cronjob
 + Add shell role with bash options (like `set -o vi`)
