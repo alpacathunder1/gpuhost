@@ -1,6 +1,6 @@
 ---
-- name: Configure Locale
-  ansible.builtin.include_tasks: pam.yml
+- name: Configure locale
+  ansible.builtin.include_tasks: locale.yml
 - name: Configure hostname
   ansible.builtin.include_tasks: hostname.yml
 - name: Configure timezone
