@@ -59,8 +59,6 @@ vdirsyncer sync
 ## TODO
 
 + locale-gen
-+ Run on a clean arch installation (+ set up RAID1)
-  + Test MDADM emails once raid is setup
 + Setup vdirsyncer/bitwarden
   + Add `source ~/.bw-session  && vdirsyncer sync -v `#XYZ` cronjob
 + Add shell role with bash options (like `set -o vi`)
