@@ -29,28 +29,23 @@
     <hugepages/>
   </memoryBacking>
   {#
-  Similar to this Reddit user's setup:
+  Originally similar to this Reddit user's setup:
   https://www.reddit.com/r/VFIO/comments/wx855g/working_intel_alder_lake_setup_on_a_12700k/
+
+  However, I'm testing out putting the P-cores in pairs according to the output of:
+  `cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list`
   #}
   <vcpu placement='static'>16</vcpu>
   <iothreads>1</iothreads>
   <cputune>
-    <vcpupin vcpu='0' cpuset='0'/>
-    <vcpupin vcpu='1' cpuset='1'/>
-    <vcpupin vcpu='2' cpuset='2'/>
-    <vcpupin vcpu='3' cpuset='3'/>
-    <vcpupin vcpu='4' cpuset='4'/>
-    <vcpupin vcpu='5' cpuset='5'/>
-    <vcpupin vcpu='6' cpuset='6'/>
-    <vcpupin vcpu='7' cpuset='7'/>
-    <vcpupin vcpu='8' cpuset='8'/>
-    <vcpupin vcpu='9' cpuset='9'/>
-    <vcpupin vcpu='10' cpuset='10'/>
-    <vcpupin vcpu='11' cpuset='11'/>
-    <vcpupin vcpu='12' cpuset='12'/>
-    <vcpupin vcpu='13' cpuset='13'/>
-    <vcpupin vcpu='14' cpuset='14'/>
-    <vcpupin vcpu='15' cpuset='15'/>
+    <vcpupin vcpu='0' cpuset='0,1'/>
+    <vcpupin vcpu='1' cpuset='2,3'/>
+    <vcpupin vcpu='2' cpuset='4,5'/>
+    <vcpupin vcpu='3' cpuset='6,7'/>
+    <vcpupin vcpu='4' cpuset='8,9'/>
+    <vcpupin vcpu='5' cpuset='10,11'/>
+    <vcpupin vcpu='6' cpuset='12,13'/>
+    <vcpupin vcpu='7' cpuset='14,15'/>
     <emulatorpin cpuset='16-19'/>
     <iothreadpin iothread='1' cpuset='16-19'/>
   </cputune>
@@ -118,6 +113,10 @@
   This matches the host setup, minus the cores not allocated to the vm
   #}
   <cpu mode='host-passthrough' check='none' migratable='off'>
+    {#
+    I'm assuming since it's one cpu, 1 socket/die
+    + 8 cores allocates, with 2 threads each
+    #}
     <topology sockets='1' dies='1' cores='8' threads='2'/>
     {#
     Not sure, couldn't find a ton of into.  I'm assuming passthrough is best. 
