@@ -8,9 +8,6 @@ presets:
     preset:
       - "best_video_quality"
       - "Plex TV Show by Date"
-    match_filters:
-      filters:
-        - "original_url!*=/shorts/"
     ytdl_options:
-      max_downloads: 250
+#     max_downloads: 250
       break_on_existing: False
