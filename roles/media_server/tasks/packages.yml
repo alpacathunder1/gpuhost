@@ -6,4 +6,4 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    - plex-media-server
+    - plex-media-server-plexpass
