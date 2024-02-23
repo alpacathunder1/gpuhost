@@ -17,7 +17,7 @@ nmcli con up bridge-br0
 ```bash
 # I can't remember if actually used an rfkill command
 nmcli radio wifi off
-# theres one for wwan too, i just do it via nmtui
+nmcli radio wwan off
 ```
 
 ## ZFS
@@ -49,7 +49,6 @@ vdirsyncer sync
 ## TODO
 
 + enforce efi boot order
-+ try non-lvm raid installation
 + fix bizarre 90 second hang when rebooting
   + Maybe masking `efi.mount`? If unused on the new install?
 + Add shell role with bash options (like `set -o vi`)

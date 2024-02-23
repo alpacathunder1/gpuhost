@@ -54,5 +54,8 @@
   service:
     enabled: 'no'
     masked: 'yes'
-    name: efi.mount
+    name: "{{ item }}"
     state: stopped
+  with_items:
+    - efi.mount
+    - efi.automount
