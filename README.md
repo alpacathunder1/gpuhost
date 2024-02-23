@@ -49,8 +49,6 @@ vdirsyncer sync
 ## TODO
 
 + enforce efi boot order
-+ fix bizarre 90 second hang when rebooting
-  + Maybe masking `efi.mount`? If unused on the new install?
 + Add shell role with bash options (like `set -o vi`)
 + Populate boot entries in install guide
   + add note about /boot in fstab
