@@ -48,6 +48,7 @@ vdirsyncer sync
 
 ## TODO
 
++ require a mount for plex role to be run 
 + enforce efi boot order
 + Add shell role with bash options (like `set -o vi`)
 + Populate boot entries in install guide
