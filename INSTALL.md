@@ -3,24 +3,25 @@ wipefs -a /dev/nvme0n1
 wipefs -a /dev/nvme1n1
 parted /dev/nvme0n1 mklabel gpt
 parted /dev/nvme1n1 mklabel gpt
-# Create 3 Partitions
-# 1GB EF00 ESP
-# 8GB 8200 swap
-# -   8300 root
-sfdisk -d /dev/nvme0n1 | sfdisk /dev/nvme1n1
 # Say yes to prompt
-mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n1p1 /dev/nvme1n1p2 --metadata=1.0
-mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n1p1 /dev/nvme1n1p2
-mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n1p3 /dev/nvme1n1p3
+mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n1 /dev/nvme1n1 --metadata=0.90
+parted /dev/md0 mklabel gpt
+# Create 3 Partitions
+# 1GB EF00 EFI
+# -   8300
+cgdisk /dev/md0
 mkfs.fat -F 32 /dev/md0p1
-mkswap /dev/md0p2
-parted /dev/md0p3 mklabel gpt
-mkfs.ext4 -L arch_os /dev/md0p3
-mount /dev/md0p3 /mnt
-swapon /dev/md0p2
-mkdir /mnt/efi
-mount /dev/md0p1 /mnt/efi
-pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-firmware python3 ansible
+pvcreate /dev/md0p2
+vgcreate vg0 /dev/md0p2
+lvcreate vg0 -n swap -L 4G
+lvcreate -l +100%FREE vg0 --name root
+mkfs.ext4 -L arch_os /dev/mapper/vg0-root
+mkswap /dev/mapper/vg0-swap
+mount /dev/mapper/vg0-root /mnt
+swapon /dev/mapper/vg0-swap
+mkdir /mnt/boo
+mount /dev/md0p1 /mnt/boot
+pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-firmware python3
 genfstab -pU /mnt >> /mnt/etc/fstab 
 arch-chroot /mnt /bin/bash
 ```
@@ -28,6 +29,9 @@ arch-chroot /mnt /bin/bash
 ## In Chroot
 
 ```bash
+# I needed a slightly older kernel since the current zfs isn't up to date yet
+# I got these filese from my old install
+pacman -U linux-lts-6.6.16-1-x86_64.pkg.tar.zst  linux-lts-headers-6.6.16-1-x86_64.pkg.tar.zst
 hwclock --systohc --utc
 echo desktop > /etc/hostname
 echo LANG=en_US.UTF-8 >> /etc/locale.conf
@@ -42,12 +46,7 @@ EDITOR=nvim visudo
 # Add 'ext4' to "MODULES" and add 'mdadm_udev lvm2' "HOOKS" *before* 'filesystems'
 nvim /etc/mkinitcpio.conf 
 mkinitcpio -p linux-lts
-mkdir -p /boot/loader/entries
-echo "title Arch Linux" >> /boot/loader/entries/arch.conf
-echo "linux /vmlinuz-linux-lts" >> /boot/loader/entries/arch.conf
-echo "initrd /intel-ucode.img" >> /boot/loader/entries/arch.conf
-echo "initrd /initramfs-linux-lts.img" >> /boot/loader/entries/arch.conf
-echo "options root=\"LABEL=arch_os\" rw" >> /boot/loader/entries/arch.conf
+# Make sure to populate some entries !!
 bootctl install
 systemctl enable sshd NetworkManager
 ```
@@ -55,6 +54,6 @@ systemctl enable sshd NetworkManager
 ## Get out of chroot, and 
 ```
 umount -R /mnt
-swapoff /dev/md0p2
+swapoff /dev/mapper/vg0-swap
 poweroff
 ```
