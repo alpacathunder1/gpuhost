@@ -49,3 +49,10 @@
     path: /etc/mkinitcpio.conf
     regexp: ^MODULES=
     line: MODULES=(ext4 vfio_pci vfio vfio_iommu_type1)
+- become: true
+  name: Mask efi.mount
+  service:
+    enabled: 'no'
+    masked: 'yes'
+    name: efi.mount
+    state: stopped

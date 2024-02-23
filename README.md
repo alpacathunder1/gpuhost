@@ -48,6 +48,7 @@ vdirsyncer sync
 
 ## TODO
 
++ enforce efi boot order
 + try non-lvm raid installation
 + fix bizarre 90 second hang when rebooting
   + Maybe masking `efi.mount`? If unused on the new install?

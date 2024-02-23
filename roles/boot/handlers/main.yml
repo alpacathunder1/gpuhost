@@ -8,4 +8,4 @@
   become: true
   changed_when: true
   ansible.builtin.command:
-    cmd: bootctl --path=/boot install
+    cmd: bootctl install
