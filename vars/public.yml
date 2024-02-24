@@ -1,4 +1,7 @@
 ---
+ansible_host: "{{ lan_domain }}"
+ansible_port: "{{ lan_port }}"
+ansible_user: "{{ username }}"
 email: ataylor@posteo.us
 fullname: Alex Taylor
 ansible_group: alex

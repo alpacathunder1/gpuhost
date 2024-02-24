@@ -59,6 +59,8 @@ vdirsyncer sync
 
 ## TODO
 
++ gogs
++ ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
 + add sway config
 + rename repo
 + require a mount for plex role to be run 
