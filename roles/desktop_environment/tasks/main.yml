@@ -7,5 +7,5 @@
   ansible.builtin.include_tasks: browser.yml
 - name: Install terminal
   ansible.builtin.include_tasks: terminal.yml
-- name: Install looking glass
+- name: Install displays
   ansible.builtin.include_tasks: vm_viewer.yml

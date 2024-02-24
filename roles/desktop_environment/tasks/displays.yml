@@ -6,4 +6,5 @@
     use: yay
     name: "{{ item }}"
   with_items:
+    - wg-displays
     - looking-glass
