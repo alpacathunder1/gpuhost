@@ -36,6 +36,14 @@
     path: /etc/mkinitcpio.conf
     regexp: ^FILES=
     line: FILES=(/usr/local/bin/vfio-pci-override.sh)
+- name: Add vfio-ansible.conf
+  become: true
+  ansible.builtin.copy:
+    content: install vfio-pci /usr/local/bin/vfio-pci-override.sh
+    dest: /etc/modprobe.d/vfio-ansible.conf
+    group: root
+    mode: "0640"
+    owner: root
 - name: Define vm from xml
   become: true
   tags: update-vm
