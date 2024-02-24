@@ -8,4 +8,4 @@
 - name: Install terminal
   ansible.builtin.include_tasks: terminal.yml
 - name: Install displays
-  ansible.builtin.include_tasks: vm_viewer.yml
+  ansible.builtin.include_tasks: displays.yml

@@ -8,3 +8,11 @@
   with_items:
     - wg-displays
     - looking-glass
+- name: Create 10-looking-glass.conf
+  become: yes
+  copy:
+    dest: /etc/tmpfiles.d/10-looking-glass.conf
+    content: f /dev/shm/looking-glass 0660 {{ ansible_user }} kvm -
+    owner: root
+    group: root
+    mode: '0644'
