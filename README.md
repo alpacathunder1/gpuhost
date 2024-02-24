@@ -20,6 +20,12 @@ nmcli radio wifi off
 nmcli radio wwan off
 ```
 
++ And deleting unneeded connections
+```bash
+# This might kill your current connection
+nmcli connection delete Wired\ connection\ 1
+```
+
 ## ZFS
 
 Pool was created with:
