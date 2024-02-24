@@ -46,6 +46,9 @@ zfs set mountpoint=/var/lib/plex tank/var-lib-plex
 zfs create tank/borg
 zfs set com.sun:auto-snapshot=false tank/borg
 zfs set mountpoint=/mnt/borg tank/borg
+zfs create tank/home-alex-.mozilla
+zfs set com.sun:auto-snapshot=false tank/home-alex-.mozilla
+zfs set mountpoint=/home/alex/.mozilla tank/home-alex-.mozilla
 ```
 
 ## vdirsyncer
