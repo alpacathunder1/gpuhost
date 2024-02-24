@@ -12,7 +12,7 @@
   ansible.builtin.lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: ^HOOKS=
-    line: HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block mdadm_udev lvm2 filesystems fsck)
+    line: HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block mdadm_udev filesystems fsck)
 - name: Add mailaddr to mdadm conf
   become: true
   ansible.builtin.lineinfile:
