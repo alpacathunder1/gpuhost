@@ -6,7 +6,7 @@
     state: present
   with_items:
     - neovim
-    - emacs
+    - emacs-nativecomp
     - fd
     - ripgrep
     - cmake
