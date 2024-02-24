@@ -1,0 +1,11 @@
+---
+- name: Install fonts
+  ansible.builtin.include_tasks: fonts.yml
+- name: Install window manager
+  ansible.builtin.include_tasks: wm.yml
+- name: Install broweser + email client
+  ansible.builtin.include_tasks: browser.yml
+- name: Install terminal
+  ansible.builtin.include_tasks: terminal.yml
+- name: Install looking glass
+  ansible.builtin.include_tasks: vm_viewer.yml

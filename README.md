@@ -61,6 +61,7 @@ vdirsyncer sync
 
 + require a mount for plex role to be run 
 + enforce efi boot order
++ enforce fstab efi partition correct umask/permissions
 + Add shell role with bash options (like `set -o vi`)
 + Populate boot entries in install guide
   + add note about /boot in fstab

@@ -24,3 +24,4 @@
     - role: backups
     - role: file_manager
     - role: passwords
+    - role: desktop_environment
