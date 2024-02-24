@@ -6,4 +6,7 @@
     state: present
   with_items:
     - noto-fonts
+    - noto-fonts-cjk
+    - noto-fonts-emoji
+    - noto-fonts-extra
     - terminus-font
