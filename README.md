@@ -59,6 +59,8 @@ vdirsyncer sync
 
 ## TODO
 
++ add sway config
++ rename repo
 + looking glass tmpfile
 + require a mount for plex role to be run 
 + enforce efi boot order
