@@ -20,11 +20,16 @@ nmcli radio wifi off
 nmcli radio wwan off
 ```
 
-+ And deleting unneeded connections
+### NOTE
+
+You had some bridging issues on the most recent clean reinstall, you had to
++ Delete the unneeded connections
 ```bash
-# This might kill your current connection
+# This will kick you out if remote
 nmcli connection delete Wired\ connection\ 1
 ```
+...and recreate the above bridge, which had `enp6s0` for the name. NetworkManager takes a bit to come up too.  This might be a bug, but you have networking working now.
+
 
 ## ZFS
 
