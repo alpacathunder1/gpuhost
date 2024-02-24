@@ -1,0 +1,11 @@
+---
+- name: Enable vim mode bash
+  become: false
+  ansible.builtin.lineinfile:
+    line: set -o vi
+    path: /home/{{ ansible_user }}/.bashrc
+- name: Source bw-session
+  become: false
+  ansible.builtin.lineinfile:
+    line: source ~/.bw-session
+    path: /home/{{ ansible_user }}/.bashrc
