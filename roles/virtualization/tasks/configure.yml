@@ -3,8 +3,11 @@
   become: true
   ansible.builtin.user:
     append: "yes"
-    groups: libvirt
+    groups: "{{ item }}"
     name: "{{ ansible_user }}"
+  with_items:
+    - libvirt
+    - libvirt-qemu
 - name: Create libvirt hooks dir
   become: true
   ansible.builtin.file:

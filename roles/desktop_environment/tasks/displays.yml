@@ -13,6 +13,6 @@
   copy:
     dest: /etc/tmpfiles.d/10-looking-glass.conf
     content: f /dev/shm/looking-glass 0660 {{ ansible_user }} kvm -
-    owner: root
-    group: root
+    owner: libvirt-qemu
+    group: libvirt-qemu
     mode: '0644'

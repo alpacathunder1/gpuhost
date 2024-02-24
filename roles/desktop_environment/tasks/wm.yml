@@ -10,3 +10,13 @@
     - wmenu
     - dmenu
     - xorg-xwayland
+- name: Use adwaita dark
+  become: false
+  ansible.builtin.lineinfile:
+    line: export GTK_THEME=Adwaita:dark
+    path: /home/{{ ansible_user }}/.bashrc
+- name: Autostart sway
+  become: false
+  ansible.builtin.lineinfile:
+    line: if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then exec sway; fi
+    path: /home/{{ ansible_user }}/.bashrc
