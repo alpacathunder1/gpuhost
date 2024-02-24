@@ -13,5 +13,6 @@
     - dnsmasq
     - libvirt
     - qemu-base
+    - qemu-full
     - libvirt-python
     - qemu-hw-usb-host

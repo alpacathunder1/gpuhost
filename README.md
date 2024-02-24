@@ -59,6 +59,7 @@ vdirsyncer sync
 
 ## TODO
 
++ looking glass tmpfile
 + require a mount for plex role to be run 
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions

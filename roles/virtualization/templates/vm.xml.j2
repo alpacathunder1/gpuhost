@@ -153,6 +153,11 @@
     Most importantly, the "Level 3 Cache" seems to be 25MB of my processor (i7-12700K)
     #}
     <cache mode='passthrough'/>
+    {#
+    Looking glass
+    https://github.com/tianocore/edk2/discussions/4662
+    #}
+    <maxphysaddr mode='passthrough' limit='40'/>
   </cpu>
   {# This another one one that I've been having some trouble optimizing 
   These seems to be a good default, and apparently helps with keeping host CPU low while idle
@@ -271,8 +276,6 @@
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
-    <input type='mouse' bus='ps2'/>
-    <input type='keyboard' bus='ps2'/>
     {#
     Not sure if tpm passthrough makes any difference vs emulated, but its there
     #}
@@ -281,7 +284,6 @@
         <device path='/dev/tpm0'/>
       </backend>
     </tpm>
-    <audio id='1' type='none'/>
     {#
     Your GPU (video)
     #}
@@ -329,6 +331,37 @@
     https://looking-glass.io/docs/B6/install/
     #}
     <memballoon model='none'/>
+    {#
+    Looking glass - shared memory
+    #}
+    <shmem name='looking-glass'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>64</size>
+    </shmem>
+    {#
+    Looking glass - audio
+    #}
+    <sound model='ich9'>
+      <audio id='1'/>
+    </sound>
+    <audio id='1' type='spice'/>
+    {#
+    Looking glass - mouse/keyboard
+    Before these were:
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    #}
+    <input type='mouse' bus='virtio'/>
+    <input type='keyboard' bus='virtio'/>
+    {#
+    Looking glass - video
+    #}
+    <graphics type="spice" port="5900" autoport="no">
+      <listen type="address"/>
+    </graphics>
+    <video>
+      <model type='vga'/>
+    </video>
   </devices>
 </domain>
 
