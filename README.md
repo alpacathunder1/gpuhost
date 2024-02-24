@@ -61,6 +61,7 @@ vdirsyncer sync
 
 + cleanup libvirt vm to conform with how it gets imported
 + gogs
++ japanese IME
 + handy aliases
 + ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
 + add sway config
