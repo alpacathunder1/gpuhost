@@ -62,6 +62,7 @@ zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-shar
 + handy aliases
 + ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
 + add sway config
+  + swayidle + swaylock
 + rename repo
 + require a mount for plex role to be run 
 + enforce efi boot order
