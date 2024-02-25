@@ -52,6 +52,9 @@ zfs set mountpoint=/home/alex/.mozilla tank/home-alex-.mozilla
 zfs create tank/home-alex-.local-share-vdirsyncer
 zfs set com.sun:auto-snapshot=false tank/home-alex-.local-share-vdirsyncer
 zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-share-vdirsyncer
+zfs create tank/home-alex-appimage
+zfs set com.sun:auto-snapshot=false tank/home-alex-appimage
+zfs set mountpoint=/home/alex/appimage tank/home-alex-appimage
 zfs create tank/var-lib-postgres
 zfs set com.sun:auto-snapshot=false tank/var-lib-postgres
 zfs set mountpoint=/var/lib/postgres tank/var-lib-postgres
