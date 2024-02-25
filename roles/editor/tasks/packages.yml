@@ -16,7 +16,7 @@
     - graphviz
     - neovim
     - pandoc
-    - texlive-core
+    - texlive
     - shellcheck
 - name: Remove packages
   become: true

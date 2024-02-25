@@ -62,6 +62,9 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 
 ## TODO
 
+### Fonts
++ install good monospaced japanese font
+
 ### Gogs
 + Setup pam
 

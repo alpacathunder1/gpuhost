@@ -9,3 +9,5 @@
   ansible.builtin.include_tasks: terminal.yml
 - name: Install displays
   ansible.builtin.include_tasks: displays.yml
+- name: Install documents
+  ansible.builtin.include_tasks: displays.yml
