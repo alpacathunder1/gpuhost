@@ -81,6 +81,7 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 + handy aliases
 
 ### Ansible/repo
++ **separate zfs role to setup mounts before everything else**
 + rename repo
 + ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
 
