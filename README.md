@@ -62,9 +62,7 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 
 ## TODO
 
-
 ### Gogs
-+ Restart gogs on config change
 + Setup ssh
 
 ### Backups
