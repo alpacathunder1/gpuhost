@@ -68,4 +68,3 @@ zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-shar
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions
 + Configure ytdl-sub systemd timer/unit
-+ Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)
