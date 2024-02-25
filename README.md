@@ -59,6 +59,7 @@ zfs set mountpoint=/var/lib/postgres tank/var-lib-postgres
 
 ## TODO
 
++ move borg to template
 + correctly add postgres backups to borgmatic
 + cleanup libvirt vm to conform with how it gets imported
 + gogs
