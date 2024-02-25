@@ -58,24 +58,37 @@ zfs set mountpoint=/var/lib/postgres tank/var-lib-postgres
 zfs create tank/var-lib-gogs
 zfs set com.sun:auto-snapshot=false tank/var-lib-gogs
 zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
-zfs create tank/etc-gogs
-zfs set com.sun:auto-snapshot=false tank/etc-gogs
-zfs set mountpoint=/etc/gogs tank/etc-gogs
 ```
 
 ## TODO
 
-+ move borg to template
+
+### Gogs
++ Restart gogs on config change
++ Setup ssh
+
+### Backups
 + correctly add postgres backups to borgmatic
++ move borg to template
+
+### Virtualization
 + cleanup libvirt vm to conform with how it gets imported
-+ gogs
-+ japanese IME
-+ handy aliases
-+ ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
+
+### Desktop
 + add sway config
   + swayidle + swaylock
++ japanese IME
+
+### Shell
++ handy aliases
+
+### Ansible/repo
 + rename repo
-+ require a mount for plex role to be run 
++ ansible galaxy installation (`ansible-galaxy install -r requirements.yml`)
+
+### Boot
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions
+
+### Video Downloader
 + Configure ytdl-sub systemd timer/unit
