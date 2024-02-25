@@ -90,3 +90,6 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 
 ### Video Downloader
 + Configure ytdl-sub systemd timer/unit
+
+### DOOM/emacs
++ Installing fonts
