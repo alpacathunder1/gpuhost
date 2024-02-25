@@ -10,4 +10,4 @@
 - name: Install displays
   ansible.builtin.include_tasks: displays.yml
 - name: Install documents
-  ansible.builtin.include_tasks: displays.yml
+  ansible.builtin.include_tasks: documents.yml
