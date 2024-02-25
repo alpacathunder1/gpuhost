@@ -8,6 +8,7 @@
   `cat /proc/sys/kernel/random/uuid`
   #}
   <uuid>{{ vm_uuid }}</uuid>
+  {{ vm_sysinfo }}
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://microsoft.com/win/11"/>
@@ -79,6 +80,7 @@
     <loader readonly='yes' secure='yes' type='pflash'>/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
     <nvram template='/usr/share/edk2/x64/OVMF_VARS.4m.fd'>/var/lib/libvirt/qemu/nvram/{{ vm_name }}_VARS.fd</nvram>
     <bootmenu enable='no'/>
+    <smbios mode="sysinfo"/>
   </os>
   <features>
     <acpi/>
