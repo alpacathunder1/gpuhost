@@ -18,5 +18,5 @@
 - name: Autostart sway
   become: false
   ansible.builtin.lineinfile:
-    line: if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then exec sway; fi
+    line: if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" = "1" ]; then exec sway; fi
     path: /home/{{ ansible_user }}/.bashrc
