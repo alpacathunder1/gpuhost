@@ -1,4 +1,4 @@
-this is my desktop/gaming/gpu/vfio/windows11/parsec hypervisor box
+this is my desktop/gaming/gpu/vfio/windows11/hypervisor box
 
 ## Things not covered by this (yet)
 
@@ -33,7 +33,7 @@ nmcli connection delete Wired\ connection\ 1
 
 ## ZFS
 
-Pool was created with:
+Pool/datasets were created with:
 ```bash
 zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
 zpool set cachefile=/etc/zfs/zpool.cache
@@ -49,15 +49,9 @@ zfs set mountpoint=/mnt/borg tank/borg
 zfs create tank/home-alex-.mozilla
 zfs set com.sun:auto-snapshot=false tank/home-alex-.mozilla
 zfs set mountpoint=/home/alex/.mozilla tank/home-alex-.mozilla
-```
-
-## vdirsyncer
-
-Sync was started with
-
-```bash
-yes | vdirsyncer discover
-vdirsyncer sync
+zfs create tank/home-alex-.local-share-vdirsyncer
+zfs set com.sun:auto-snapshot=false tank/home-alex-.local-share-vdirsyncer
+zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-share-vdirsyncer
 ```
 
 ## TODO
@@ -72,5 +66,5 @@ vdirsyncer sync
 + require a mount for plex role to be run 
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions
-+ Configure ytdl_sub systemd timer/unit
++ Configure ytdl-sub systemd timer/unit
 + Have a more elegant way of adding variables  (git hook? right now you use `ansible-vault view vars/vault.yml | cat | sed 's/:.*//' > vars/vault.yml.sample`)
