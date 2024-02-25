@@ -63,10 +63,9 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 ## TODO
 
 ### Gogs
-+ Setup ssh
++ Setup pam
 
 ### Backups
-+ correctly add postgres backups to borgmatic
 + move borg to template
 
 ### Virtualization

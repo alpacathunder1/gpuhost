@@ -12,6 +12,7 @@
     - role: config_management
     - role: firewall
     - role: remote_login
+    - role: remote_login_server
     - role: version_control
     - role: editor
     - role: notifications
