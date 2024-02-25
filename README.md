@@ -92,4 +92,8 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 + Configure ytdl-sub systemd timer/unit
 
 ### DOOM/emacs
++ **auto import khalel events**
 + Installing fonts
+
+### SSH 
++ newline pubkey
