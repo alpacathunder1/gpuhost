@@ -1,0 +1,7 @@
+---
+- name: Allow Gogs through ufw
+  become: true
+  community.general.ufw:
+    port: "3000"
+    proto: tcp
+    rule: allow

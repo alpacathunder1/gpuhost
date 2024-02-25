@@ -55,6 +55,12 @@ zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-shar
 zfs create tank/var-lib-postgres
 zfs set com.sun:auto-snapshot=false tank/var-lib-postgres
 zfs set mountpoint=/var/lib/postgres tank/var-lib-postgres
+zfs create tank/var-lib-gogs
+zfs set com.sun:auto-snapshot=false tank/var-lib-gogs
+zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
+zfs create tank/etc-gogs
+zfs set com.sun:auto-snapshot=false tank/etc-gogs
+zfs set mountpoint=/etc/gogs tank/etc-gogs
 ```
 
 ## TODO

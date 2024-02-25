@@ -1,0 +1,10 @@
+---
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+- name: Restart gogs
+  become: true
+  ansible.builtin.service:
+    name: gogs
+    state: restarted

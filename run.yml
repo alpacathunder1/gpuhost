@@ -26,3 +26,4 @@
     - role: passwords
     - role: desktop_environment
     - role: database
+    - role: version_control_server
