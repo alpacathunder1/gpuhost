@@ -6,7 +6,7 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    - wg-displays
+    - nwg-displays
     - looking-glass
 - name: Create 10-looking-glass.conf
   become: yes
