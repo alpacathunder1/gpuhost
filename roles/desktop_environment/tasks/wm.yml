@@ -9,6 +9,8 @@
 #   - swaybg
     - wmenu
     - dmenu
+    - grim
+    - slurp
     - xorg-xwayland
 - name: Use adwaita dark
   become: false
