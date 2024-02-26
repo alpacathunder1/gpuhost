@@ -12,6 +12,14 @@
     - grim
     - slurp
     - xorg-xwayland
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    - swayosd-git
 - name: Use adwaita dark
   become: false
   ansible.builtin.lineinfile:
