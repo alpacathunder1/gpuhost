@@ -1,0 +1,9 @@
+---
+- name: ytdl-sub oneshot
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/ytdl-sub-oneshot.service
+    group: root
+    mode: "0644"
+    owner: root
+    src: ytdl-sub-oneshot.service

@@ -1,0 +1,12 @@
+[Unit]
+Description=Download YouTube Subscriptions
+After=network.target
+
+[Service]
+User=ytdl-sub
+Group=ytdl-sub
+Type=oneshot
+ExecStart=/usr/local/bin/ytdl-sub -c /etc/ytdl-sub/config.yml sub /etc/ytdl-sub/subscriptions.yml
+
+[Install]
+WantedBy=multi-user.target

@@ -72,6 +72,7 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 + install good monospaced japanese font
 
 ### Gogs
++ Config directory permissions seem to change
 + Setup pam
 
 ### Backups
