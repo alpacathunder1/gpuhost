@@ -39,14 +39,14 @@
   <vcpu placement='static'>16</vcpu>
   <iothreads>1</iothreads>
   <cputune>
-    <vcpupin vcpu='0' cpuset='0,1'/>
-    <vcpupin vcpu='1' cpuset='2,3'/>
-    <vcpupin vcpu='2' cpuset='4,5'/>
-    <vcpupin vcpu='3' cpuset='6,7'/>
-    <vcpupin vcpu='4' cpuset='8,9'/>
-    <vcpupin vcpu='5' cpuset='10,11'/>
-    <vcpupin vcpu='6' cpuset='12,13'/>
-    <vcpupin vcpu='7' cpuset='14,15'/>
+    <vcpupin vcpu='0' cpuset='0-1'/>
+    <vcpupin vcpu='1' cpuset='2-3'/>
+    <vcpupin vcpu='2' cpuset='4-5'/>
+    <vcpupin vcpu='3' cpuset='6-7'/>
+    <vcpupin vcpu='4' cpuset='8-9'/>
+    <vcpupin vcpu='5' cpuset='10-11'/>
+    <vcpupin vcpu='6' cpuset='12-13'/>
+    <vcpupin vcpu='7' cpuset='14-15'/>
     <emulatorpin cpuset='16-19'/>
     <iothreadpin iothread='1' cpuset='16-19'/>
   </cputune>
