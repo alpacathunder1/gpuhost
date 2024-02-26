@@ -80,7 +80,7 @@
     <loader readonly='yes' secure='yes' type='pflash'>/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
     <nvram template='/usr/share/edk2/x64/OVMF_VARS.4m.fd'>/var/lib/libvirt/qemu/nvram/{{ vm_name }}_VARS.fd</nvram>
     <bootmenu enable='no'/>
-    <smbios mode="sysinfo"/>
+    <smbios mode='sysinfo'/>
   </os>
   <features>
     <acpi/>
