@@ -52,6 +52,9 @@ zfs set mountpoint=/home/alex/.mozilla tank/home-alex-.mozilla
 zfs create tank/home-alex-.local-share-vdirsyncer
 zfs set com.sun:auto-snapshot=false tank/home-alex-.local-share-vdirsyncer
 zfs set mountpoint=/home/alex/.local/share/vdirsyncer tank/home-alex-.local-share-vdirsyncer
+zfs create tank/home-alex-.config-Signal
+zfs set com.sun:auto-snapshot=false tank/home-alex-.config-Signal
+zfs set mountpoint=/home/alex/.config/Signal tank/home-alex-.config-Signal
 zfs create tank/home-alex-appimage
 zfs set com.sun:auto-snapshot=false tank/home-alex-appimage
 zfs set mountpoint=/home/alex/appimage tank/home-alex-appimage
