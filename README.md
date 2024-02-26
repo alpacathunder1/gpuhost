@@ -99,7 +99,7 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 + enforce fstab efi partition correct umask/permissions
 
 ### Video Downloader
-+ Configure ytdl-sub systemd timer/unit
++ Configure ytdl-sub systemd timer
 
 ### DOOM/emacs
 + **auto import khalel events**
