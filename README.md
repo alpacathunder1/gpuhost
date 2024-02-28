@@ -107,3 +107,6 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 
 ### SSH 
 + newline pubkey
+
+### Editor
++ Auto git push/pull for Desktop notes
