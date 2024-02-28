@@ -107,3 +107,6 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 
 ### Editor
 + Auto git push/pull for Desktop notes
+
+### Virtualization
++ Play with cleaning up/learning about pci devices
