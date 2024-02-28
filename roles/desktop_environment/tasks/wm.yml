@@ -12,7 +12,6 @@
     - grim
     - slurp
     - xorg-xwayland
-    - imv
 - name: Install packages
   become: true
   become_user: aur_builder
