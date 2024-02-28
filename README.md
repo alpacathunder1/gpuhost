@@ -78,9 +78,6 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 ### Backups
 + move borg to template
 
-### Virtualization
-+ cleanup libvirt vm to conform with how it gets imported
-
 ### Desktop
 + add sway config
   + swayidle + swaylock

@@ -259,6 +259,15 @@
       <target chassis='14' port='0x1d'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x5'/>
     </controller>
+    <controller type='pci' index='15' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='15' port='0x8'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
+    </controller>
+    <controller type='pci' index='16' model='pcie-to-pci-bridge'>
+      <model name='pcie-pci-bridge'/>
+      <address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
+    </controller>
     {#
     Needed for various qemu stuff, such as the guest agent
     https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/html/virtual_machine_management_guide/installing_guest_agents_and_drivers_windows
@@ -309,6 +318,7 @@
     #}
     <sound model='ich9'>
       <audio id='1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
     </sound>
     <audio id='1' type='spice'/>
     <video>
@@ -367,6 +377,7 @@
     <shmem name='looking-glass'>
       <model type='ivshmem-plain'/>
       <size unit='M'>64</size>
+      <address type='pci' domain='0x0000' bus='0x10' slot='0x01' function='0x0'/>
     </shmem>
   </devices>
 </domain>
