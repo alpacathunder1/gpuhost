@@ -279,14 +279,6 @@
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     {#
-    Not sure if tpm passthrough makes any difference vs emulated, but its there
-    #}
-    <tpm model='tpm-tis'>
-      <backend type='passthrough'>
-        <device path='/dev/tpm0'/>
-      </backend>
-    </tpm>
-    {#
     Looking glass docs say to add virtio mouse/keyboard
     The ps2 ones seem unneeded however, they just get re-added on import
     #}
@@ -298,7 +290,30 @@
     </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-
+    {#
+    Not sure if tpm passthrough makes any difference vs emulated, but its there
+    #}
+    <tpm model='tpm-tis'>
+      <backend type='passthrough'>
+        <device path='/dev/tpm0'/>
+      </backend>
+    </tpm>
+    {#
+    Looking glass - video
+    #}
+    <graphics type='spice' port='5900' autoport='no'>
+      <listen type='address'/>
+    </graphics>
+    {#
+    Looking glass - audio
+    #}
+    <sound model='ich9'>
+      <audio id='1'/>
+    </sound>
+    <audio id='1' type='spice'/>
+    <video>
+      <model type='none'/>
+    </video>
     {#
     Your GPU (video)
     #}
@@ -353,22 +368,6 @@
       <model type='ivshmem-plain'/>
       <size unit='M'>64</size>
     </shmem>
-    {#
-    Looking glass - audio
-    #}
-    <sound model='ich9'>
-      <audio id='1'/>
-    </sound>
-    <audio id='1' type='spice'/>
-    {#
-    Looking glass - video
-    #}
-    <graphics type="spice" port="5900" autoport="no">
-      <listen type="address"/>
-    </graphics>
-    <video>
-      <model type='none'/>
-    </video>
   </devices>
 </domain>
 
