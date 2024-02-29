@@ -71,6 +71,7 @@ nmcli connection delete Wired\ connection\ 1
 
 ### Editor
 + Auto git push/pull for Desktop notes
++ Emacsclient (after testing) + add daemon
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
