@@ -43,6 +43,3 @@
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
-
-### E-mail
-+ Fix thunderbird add-ons
