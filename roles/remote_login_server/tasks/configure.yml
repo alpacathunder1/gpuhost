@@ -41,10 +41,3 @@
     path: /etc/ssh/sshd_config
     regexp: ^PermitRootLogin
     replace: "#PermitRootLogin"
-- name: Allow SSH through ufw
-  become: true
-  community.general.ufw:
-    port: "{{ ssh_port }}"
-    proto: tcp
-    rule: allow
-

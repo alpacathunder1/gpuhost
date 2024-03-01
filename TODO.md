@@ -43,8 +43,5 @@
 ### Virtualization
 + Play with cleaning up/learning about pci devices
 
-### ZFS
-+ Add weekly (or monthly?) scrub
-
 ### Hostname
 + change hostname to fqdn

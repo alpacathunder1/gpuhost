@@ -36,3 +36,14 @@
     group: root
     mode: "0644"
     owner: root
+- name: Add zfs scrub
+  become: true
+  ansible.builtin.cron:
+    day: "*"
+    hour: "4"
+    job: zpool scrub tank
+    minute: "1"
+    month: "*"
+    name: Weekly zpool scrub
+    user: root
+    weekday: "6"

@@ -16,7 +16,7 @@
   community.general.ufw:
   # I would put this in the SSH module, but since the firewall needs to get installed first I'd rather have it here so I can enable the firewall in the module.
   # There's likely a more elegant way to do this.
-    port: "22"
+    port: "{{ ssh_port }}"
     proto: tcp
     rule: allow
 - name: Allow enable UFW
