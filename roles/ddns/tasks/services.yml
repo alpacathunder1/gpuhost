@@ -1,0 +1,7 @@
+---
+- name: Enable duckdns.timer
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: duckdns.timer
+    state: started

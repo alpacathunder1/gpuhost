@@ -36,6 +36,7 @@
 
 ### SSH 
 + newline pubkey
++ replace key with rsa key
 
 ### Editor
 + Auto git push/pull for Desktop notes

@@ -1,0 +1,9 @@
+---
+- name: Copy duckdns config
+  become: true
+  ansible.builtin.template:
+    src: duckdns.j2
+    dest: /etc/duckdns.d/default.cfg
+    group: root
+    mode: "0644"
+    owner: root
