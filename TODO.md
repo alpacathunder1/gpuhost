@@ -16,6 +16,7 @@
 
 ### Shell
 + handy aliases
++ increase history
 
 ### Ansible/repo
 + **separate zfs role to setup mounts before everything else**
