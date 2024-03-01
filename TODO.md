@@ -30,7 +30,6 @@
 + Configure ytdl-sub systemd timer
 
 ### DOOM/emacs
-+ **auto import khalel events**
 + Installing fonts
 
 ### SSH 
