@@ -37,6 +37,7 @@
 ### SSH 
 + newline pubkey
 + replace key with rsa key
++ change port + (on gogs)
 
 ### Editor
 + Auto git push/pull for Desktop notes
@@ -44,3 +45,6 @@
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
+
+### ZFS
++ Add weekly (or monthly?) scrub
