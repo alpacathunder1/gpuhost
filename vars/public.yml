@@ -1,6 +1,6 @@
 ---
 ansible_host: "{{ lan_domain }}"
-ansible_port: "{{ lan_port }}"
+ansible_port: "{{ ssh_port }}"
 ansible_user: "{{ username }}"
 email: ataylor@posteo.us
 fullname: Alex Taylor
@@ -9,7 +9,6 @@ gpu_audio_id: 10de:1aef
 gpu_video_id: 10de:2208
 hostname: desktop
 lan_domain: desktop
-lan_port: 22
 mailrise_domain: mailrise
 ssh_pub_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBnqKupYpAQPQLo4lI4EXPqDtZhtKGJU4NycrrD0l0mw alex@desktop"
 usb_card_id: 1912:0014

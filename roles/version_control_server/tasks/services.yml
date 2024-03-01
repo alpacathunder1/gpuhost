@@ -19,23 +19,6 @@
   with_items:
     - Reload systemd
     - Restart gogs
-- name: Create gogs config directory
-  become: true
-  ansible.builtin.file:
-    group: gogs
-    mode: "0770"
-    owner: root
-    path: /etc/gogs
-    state: directory
-- name: Copy gogs config
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/gogs/app.ini
-    group: gogs
-    mode: "0660"
-    owner: root
-    src: gogs
-  notify: Restart gogs
 - name: Enable gogs.service
   become: true
   ansible.builtin.service:

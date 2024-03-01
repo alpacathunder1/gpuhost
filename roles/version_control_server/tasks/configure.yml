@@ -5,3 +5,20 @@
     port: "3000"
     proto: tcp
     rule: allow
+- name: Create gogs config directory
+  become: true
+  ansible.builtin.file:
+    group: gogs
+    mode: "0775"
+    owner: root
+    path: /etc/gogs
+    state: directory
+- name: Copy gogs config
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/gogs/app.ini
+    group: gogs
+    mode: "0660"
+    owner: root
+    src: gogs
+  notify: Restart gogs

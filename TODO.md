@@ -4,7 +4,6 @@
 + install good monospaced japanese font
 
 ### Gogs
-+ Config directory permissions seem to change
 + Setup pam
 
 ### Backups
@@ -37,7 +36,6 @@
 ### SSH 
 + newline pubkey
 + replace key with rsa key
-+ change port + (on gogs)
 
 ### Editor
 + Auto git push/pull for Desktop notes
@@ -48,3 +46,6 @@
 
 ### ZFS
 + Add weekly (or monthly?) scrub
+
+### Hostname
++ change hostname to fqdn
