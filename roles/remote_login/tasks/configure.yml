@@ -11,12 +11,12 @@
     group: "{{ ansible_group }}"
     mode: "0600"
     owner: "{{ ansible_user }}"
-    dest: "{{ ansible_user_dir }}/.ssh/id_ed25519"
+    dest: "{{ ansible_user_dir }}/.ssh/id_rsa"
     src: ssh
 - name: Copy public key
   ansible.builtin.copy:
     group: "{{ ansible_group }}"
     mode: "0644"
     owner: "{{ ansible_user }}"
-    dest: "{{ ansible_user_dir }}/.ssh/id_ed25519.pub"
+    dest: "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
     content: "{{ ssh_pub_key }}"
