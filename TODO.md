@@ -42,3 +42,6 @@
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
+
+## Sync
++ Configure rclone
