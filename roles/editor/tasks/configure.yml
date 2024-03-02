@@ -89,7 +89,7 @@
   ansible.builtin.cron:
     day: "*"
     hour: "*/2"
-    job:  source ~/.bw-session && vdirsyncer -v CRITICAL sync
+    job: source ~/.bw-session && vdirsyncer -v CRITICAL sync
     minute: "01"
     month: "*"
     name: vdirsyncer sync

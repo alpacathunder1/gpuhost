@@ -6,7 +6,7 @@
     state: present
   with_items:
     - sway
-#   - swaybg
+    #   - swaybg
     - wmenu
     - dmenu
     - grim

@@ -1,5 +1,5 @@
 ---
-- name: ytdl-sub oneshot
+- name: Ytdl-sub oneshot
   become: true
   ansible.builtin.copy:
     dest: /etc/systemd/system/ytdl-sub-oneshot.service

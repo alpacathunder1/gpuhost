@@ -5,7 +5,7 @@
     enabled: "yes"
     name: "{{ item }}"
     state: started
-  with_items: 
+  with_items:
     - fstrim.timer
     - smartd.service
 - name: Enable the zfs services

@@ -11,6 +11,6 @@
     cmd: zpool set cachefile=/etc/zfs/zpool.cache {{ zfs_zpool }}
 - become: true
   name: Restart smartd
-  service:
+  ansible.builtin.service:
     name: smartd
     state: restarted
