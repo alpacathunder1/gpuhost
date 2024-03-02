@@ -1,24 +1,4 @@
 ---
-- name: Create gogs.service.d directory
-  become: true
-  ansible.builtin.file:
-    group: root
-    mode: "0755"
-    owner: root
-    path: /etc/systemd/system/gogs.service.d
-    state: directory
-- name: Add gogs override
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/systemd/system/gogs.service.d/override.conf
-    group: root
-    mode: "0644"
-    owner: root
-    src: override.conf
-  notify: "{{ item }}"
-  with_items:
-    - Reload systemd
-    - Restart gogs
 - name: Enable gogs.service
   become: true
   ansible.builtin.service:
