@@ -9,7 +9,7 @@
     - nwg-displays
     - looking-glass
 - name: Create 10-looking-glass.conf
-  become: yes
+  become: true
   copy:
     dest: /etc/tmpfiles.d/10-looking-glass.conf
     content: f /dev/shm/looking-glass 0660 libvirt-qemu libvirt-qemu -
