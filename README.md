@@ -30,3 +30,8 @@ nmcli connection delete Wired\ connection\ 1
 ```
 ...and recreate the above bridge, which had `enp6s0` for the name. NetworkManager takes a bit to come up too.  This might be a bug, but you have networking working now.
 
+If I ever need to reinstall, these are the files I need to migrate
+
+```bash
+tar cPpf backup.tar /home/alex/.config/Bitwarden\ CLI /home/alex/.config/Signal /home/alex/.config/doom /home/alex/.config/emacs /home/alex/.local/share/vdirsyncer /home/alex/.mozilla /home/alex/.thunderbird /home/alex/appimage /home/alex/org /var/lib/gogs /var/lib/plex /var/lib/postgres
+```
