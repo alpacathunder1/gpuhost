@@ -291,15 +291,18 @@
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     {#
-    Looking glass docs say to add virtio mouse/keyboard
-    The ps2 ones seem unneeded however, they just get re-added on import
-    #}
+    Looking glass docs say to add virtio mouse/keyboard, however it works fine without them.
+    I'm guessing the virtio drivers are more optimized and have more functions
+
+    The ps2 mouse/keyboard get re-added every import, and I mainly use a controller,
+    so in the interest of less devices I'll just comment the virtio devices below
     <input type='mouse' bus='virtio'>
       <address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
     </input>
     <input type='keyboard' bus='virtio'>
       <address type='pci' domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
     </input>
+    #}
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
     {#
