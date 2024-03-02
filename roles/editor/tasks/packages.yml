@@ -26,13 +26,3 @@
   with_items:
     - nano
     - vim
-- name: Ensure Doom is present
-  ansible.builtin.git:
-    repo: https://github.com/hlissner/doom-emacs
-    dest: ~/.config/emacs
-  notify: Run doom install
-- name: Ensure Doom config is present
-  ansible.builtin.git:
-    repo: "{{ doom_config }}"
-    dest: ~/.config/doom
-  notify: Run doom install

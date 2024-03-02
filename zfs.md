@@ -33,4 +33,13 @@ zfs set mountpoint=/var/lib/gogs tank/var-lib-gogs
 zfs create tank/home-alex-.config-Bitwarden\ CLI
 zfs set com.sun:auto-snapshot=false tank/home-alex-.config-Bitwarden\ CLI
 zfs set mountpoint=/home/alex/.config/Bitwarden\ CLI tank/home-alex-.config-Bitwarden\ CLI
+zfs create tank/home-alex-.config-emacs
+zfs set com.sun:auto-snapshot=false tank/home-alex-.config-emacs
+zfs set mountpoint=/home/alex/.config/emacs tank/home-alex-.config-emacs
+zfs create tank/home-alex-.config-doom
+zfs set com.sun:auto-snapshot=false tank/home-alex-.config-doom
+zfs set mountpoint=/home/alex/.config/doom tank/home-alex-.config-doom
+zfs create tank/home-alex-org
+zfs set com.sun:auto-snapshot=false tank/home-alex-org
+zfs set mountpoint=/home/alex/org tank/home-alex-org
 ```

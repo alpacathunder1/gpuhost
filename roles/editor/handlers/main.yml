@@ -1,6 +1,0 @@
----
-- name: Run doom install
-  become: false
-  ansible.builtin.command:
-    cmd: ~/.config/emacs/bin/doom --force install
-  changed_when: true
