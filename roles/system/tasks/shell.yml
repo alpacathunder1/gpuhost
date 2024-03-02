@@ -4,6 +4,12 @@
   ansible.builtin.lineinfile:
     line: set -o vi
     path: /home/{{ ansible_user }}/.bashrc
+- name: Set history size
+  become: false
+  ansible.builtin.lineinfile:
+    line: HISTSIZE=10000
+    regex: ^HISTSIZE
+    path: /home/{{ ansible_user }}/.bashrc
 - name: Source bw-session
   become: false
   ansible.builtin.lineinfile:
