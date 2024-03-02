@@ -1,5 +1,8 @@
 ## TODO
 
+### Lint
++ ansible-lint wasn't actually working before and there's a bunch of issues
+
 ### Fonts
 + install good monospaced japanese font
 
@@ -33,15 +36,9 @@
 ### DOOM/emacs
 + Installing fonts
 
-### SSH 
-+ newline pubkey
-
 ### Editor
 + Auto git push/pull for Desktop notes
 + Emacsclient (after testing) + add daemon
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
-
-### Hostname
-+ change hostname to fqdn

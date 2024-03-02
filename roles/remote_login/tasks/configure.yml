@@ -19,4 +19,5 @@
     mode: "0644"
     owner: "{{ ansible_user }}"
     dest: "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
-    content: "{{ ssh_pub_key }}"
+    content: |
+      {{ ssh_pub_key }}
