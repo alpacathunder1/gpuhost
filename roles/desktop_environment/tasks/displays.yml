@@ -10,9 +10,9 @@
     - looking-glass
 - name: Create 10-looking-glass.conf
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/tmpfiles.d/10-looking-glass.conf
     content: f /dev/shm/looking-glass 0660 libvirt-qemu libvirt-qemu -
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"

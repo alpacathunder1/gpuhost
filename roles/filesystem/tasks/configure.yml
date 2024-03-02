@@ -19,10 +19,10 @@
     line: MAILADDR root
     path: /etc/mdadm.conf
     regex: ^MAILADDR
-- become: true
-  name: Enable mdmonitor-oneshot timer
-  service:
-    enabled: 'yes'
+- name: Enable mdmonitor-oneshot timer
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
     name: mdmonitor-oneshot.timer
     state: started
 - name: Limit zfs memory

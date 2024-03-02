@@ -49,11 +49,11 @@
     path: /etc/mkinitcpio.conf
     regexp: ^MODULES=
     line: MODULES=(ext4 vfio_pci vfio vfio_iommu_type1)
-- become: true
-  name: Mask efi.mount
-  ansible.builtin.service:
-    enabled: 'no'
-    masked: 'yes'
+- name: Mask efi.mount
+  become: true
+  ansible.builtin.systemd_service:
+    enabled: "no"
+    masked: "true"
     name: "{{ item }}"
     state: stopped
   with_items:
