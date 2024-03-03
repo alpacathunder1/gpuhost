@@ -7,3 +7,22 @@
   with_items:
     - zathura
     - zathura-pdf-poppler
+- name: Create zathura config directory
+  become: false
+  ansible.builtin.file:
+    group: "{{ ansible_group }}"
+    mode: "0755"
+    owner: "{{ ansible_user }}"
+    path: ~/.config/zathura
+    state: directory
+- name: Copy zathura config
+  become: false
+  ansible.builtin.copy:
+    content: |
+      set smooth-scroll "true"
+      set font "Terminus 11"
+    dest: ~/.config/zathura/zathurarc
+    group: "{{ ansible_group }}"
+    mode: "0644"
+    owner: "{{ ansible_user }}"
+
