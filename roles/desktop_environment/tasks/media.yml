@@ -7,3 +7,11 @@
   with_items:
     - mpv
     - imv
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    - ueberzugpp
