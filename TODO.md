@@ -1,5 +1,11 @@
 ## TODO
 
+### Sway 
++ copy sway conf
+
+### Ranger
++ copy ranger conf
+
 ### Lint
 + ansible-lint wasn't actually working before and there's a bunch of issues
 
