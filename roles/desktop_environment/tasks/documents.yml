@@ -21,6 +21,8 @@
     content: |
       set smooth-scroll "true"
       set font "Terminus 11"
+      map j feedkeys "<C-Down>"
+      map k feedkeys "<C-Up>"
     dest: ~/.config/zathura/zathurarc
     group: "{{ ansible_group }}"
     mode: "0644"
