@@ -6,9 +6,6 @@
 ### Lint
 + ansible-lint wasn't actually working before and there's a bunch of issues
 
-### Fonts
-+ install good monospaced japanese font
-
 ### Gogs
 + Setup pam
 
@@ -18,9 +15,6 @@
 ### Desktop
 + add sway config
   + swayidle + swaylock
-
-### Fcitx5
-+ japanese IME
 
 ### Shell
 + handy aliases
@@ -49,3 +43,9 @@
 
 ## Sync
 + Configure rclone
+
+## Improvements
+
+### Fonts
++ install good monospaced japanese font
+
