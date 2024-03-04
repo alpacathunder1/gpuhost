@@ -20,6 +20,8 @@ nmcli radio wifi off
 nmcli radio wwan off
 ```
 
++ Adding mozc to fcitx5 was manual
+
 ### NOTE
 
 You had some bridging issues on the most recent clean reinstall, you had to
