@@ -1,8 +1,5 @@
 ## TODO
 
-### Sway 
-+ copy sway conf
-
 ### Ranger
 + copy ranger conf
 
@@ -21,6 +18,8 @@
 ### Desktop
 + add sway config
   + swayidle + swaylock
+
+### Fcitx5
 + japanese IME
 
 ### Shell
