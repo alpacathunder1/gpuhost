@@ -6,6 +6,8 @@
     state: present
   with_items:
     - fcitx5
+    - fcitx5-configtool
+    - fcitx5-mozc
 - name: Add environment variables
   become: false
   ansible.builtin.lineinfile:
