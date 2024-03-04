@@ -14,7 +14,7 @@
 
 ### Desktop
 + add sway config
-  + swayidle + swaylock
+  + swayidle
 
 ### Shell
 + handy aliases
