@@ -15,3 +15,5 @@
   ansible.builtin.include_tasks: communication.yml
 - name: Install media
   ansible.builtin.include_tasks: media.yml
+- name: Install language
+  ansible.builtin.include_tasks: language.yml
