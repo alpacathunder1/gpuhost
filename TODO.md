@@ -3,9 +3,6 @@
 ### Ranger
 + copy ranger conf
 
-### Lint
-+ ansible-lint wasn't actually working before and there's a bunch of issues
-
 ### Gogs
 + Setup pam
 
@@ -49,3 +46,5 @@
 ### Fonts
 + install good monospaced japanese font
 
+### Ansible-lint
++ add an ansible-lint git hook

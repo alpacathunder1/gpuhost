@@ -28,4 +28,3 @@
     group: "{{ ansible_group }}"
     mode: "0644"
     owner: "{{ ansible_user }}"
-
