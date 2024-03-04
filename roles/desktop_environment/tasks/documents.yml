@@ -7,6 +7,7 @@
   with_items:
     - zathura
     - zathura-pdf-poppler
+    - xournalpp
 - name: Create zathura config directory
   become: false
   ansible.builtin.file:
