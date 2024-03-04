@@ -12,6 +12,7 @@
 ### Desktop
 + add sway config
   + swayidle
++ Fix red frowny face in tray
 
 ### Shell
 + handy aliases
