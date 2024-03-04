@@ -19,6 +19,7 @@
     - grim
     - slurp
     - xorg-xwayland
+    - wl-clipboard
 - name: Use adwaita dark
   become: false
   ansible.builtin.lineinfile:
