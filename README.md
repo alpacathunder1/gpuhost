@@ -21,6 +21,7 @@ nmcli radio wwan off
 ```
 
 + Adding mozc to fcitx5 was manual
++ Adding your printer to cups was manual
 
 ### NOTE
 

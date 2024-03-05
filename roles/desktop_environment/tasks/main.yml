@@ -17,3 +17,5 @@
   ansible.builtin.include_tasks: media.yml
 - name: Install language
   ansible.builtin.include_tasks: language.yml
+- name: Install printers
+  ansible.builtin.include_tasks: printers.yml

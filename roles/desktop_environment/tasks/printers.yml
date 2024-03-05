@@ -1,0 +1,15 @@
+---
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    - brother-hll2340d
+- name: Enable the cups service
+  ansible.builtin.systemd:
+    enabled: true
+    name: cups.service
+    state: started
+  become: true
