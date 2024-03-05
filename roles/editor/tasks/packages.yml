@@ -15,6 +15,7 @@
     - khal
     - graphviz
     - neovim
+    - pandoc
     - texlive
     - shellcheck
 - name: Remove packages
