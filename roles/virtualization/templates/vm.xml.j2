@@ -37,7 +37,11 @@
   `cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list`
   #}
   <vcpu placement='static'>16</vcpu>
+  {#
+  Commenting out the iothread, according to the Arch wiki iothreads are only relevant for disk devices,
+  and you are passing through an NVME disk
   <iothreads>1</iothreads>
+  #}
   <cputune>
     <vcpupin vcpu='0' cpuset='0-1'/>
     <vcpupin vcpu='1' cpuset='2-3'/>
@@ -48,7 +52,10 @@
     <vcpupin vcpu='6' cpuset='12-13'/>
     <vcpupin vcpu='7' cpuset='14-15'/>
     <emulatorpin cpuset='16-19'/>
+    {#
+    Commenting out the second iothread line
     <iothreadpin iothread='1' cpuset='16-19'/>
+    #}
   </cputune>
   {#
   Windows 11 requires secure boot be "capable", but not necessarily enabled
