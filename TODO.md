@@ -1,8 +1,5 @@
 ## TODO
 
-## Fcitx5
-+ Issues with betterbird/other inputs
-
 ### Ranger
 + copy ranger conf
 
