@@ -21,6 +21,7 @@
     - slurp
     - xorg-xwayland
     - wl-clipboard
+    - elementary-icon-theme
 - name: Use adwaita dark
   become: false
   ansible.builtin.lineinfile:
