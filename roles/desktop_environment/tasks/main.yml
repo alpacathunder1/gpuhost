@@ -19,3 +19,5 @@
   ansible.builtin.include_tasks: language.yml
 - name: Install printers
   ansible.builtin.include_tasks: printers.yml
+- name: Install scanners
+  ansible.builtin.include_tasks: scanners.yml
