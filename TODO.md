@@ -48,3 +48,7 @@
 
 ### Ansible-lint
 + add an ansible-lint git hook
+
+### Fcitx
+
++ Get `fcitx5-im-emoji-picker-git` working
