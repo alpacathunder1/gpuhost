@@ -52,3 +52,7 @@
 ### Fcitx
 
 + Get `fcitx5-im-emoji-picker-git` working
+
+### Swaybar
+
++ Fix icons on swaybar or switch to waybar
