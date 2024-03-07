@@ -1,5 +1,9 @@
 ## TODO
 
+### Fcitx
++ _**Fix the repeating keypress issue**_
++ Get `fcitx5-im-emoji-picker-git` working
+
 ### Ranger
 + copy ranger conf
 
@@ -49,9 +53,6 @@
 ### Ansible-lint
 + add an ansible-lint git hook
 
-### Fcitx
-
-+ Get `fcitx5-im-emoji-picker-git` working
 
 ### Swaybar
 
