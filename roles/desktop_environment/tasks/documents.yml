@@ -22,6 +22,7 @@
     content: |
       set smooth-scroll "true"
       set font "Terminus 11"
+      set selection-clipboard clipboard
       map j feedkeys "<C-Down>"
       map k feedkeys "<C-Up>"
     dest: ~/.config/zathura/zathurarc
