@@ -2,8 +2,8 @@
 
 ### Fcitx
 + _**Fix the repeating keypress issue**_
-  + (Trying in /etc/enviroment now)
-  + Could be order in bashrc
+  + Trying order in bashrc
+  + Could be /etc/enviroment
 + Get `fcitx5-im-emoji-picker-git` working
 
 ### Ranger
