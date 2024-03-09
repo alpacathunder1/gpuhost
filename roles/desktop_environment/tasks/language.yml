@@ -9,3 +9,12 @@
     - fcitx5-configtool
     - fcitx5-mozc
     - fcitx5-gtk
+- name: Add environment variables
+  become: false
+  ansible.builtin.lineinfile:
+    line: "{{ item }}"
+    path: /home/{{ ansible_user }}/.bashrc
+  with_items:
+    - GTK_IM_MODULE=fcitx
+    - QT_IM_MODULE=fcitx
+    - XMODIFIERS=@im=fcitx
