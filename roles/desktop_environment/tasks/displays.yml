@@ -1,6 +1,13 @@
 ---
 - name: Install packages
   become: true
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - linux-lts-headers
+- name: Install packages
+  become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
@@ -8,11 +15,64 @@
   with_items:
     - nwg-displays
     - looking-glass
-- name: Create 10-looking-glass.conf
+    - looking-glass-module-dkms
+- name: Create kvmfr module
   become: true
+  notify: Run mkinitcpio
   ansible.builtin.copy:
-    dest: /etc/tmpfiles.d/10-looking-glass.conf
-    content: f /dev/shm/looking-glass 0660 libvirt-qemu libvirt-qemu -
-    owner: root
+    content: kvmfr
+    dest: /etc/modules-load.d/kvmfr.conf
     group: root
     mode: "0644"
+    owner: root
+- name: Create LG modprobe
+  become: true
+  ansible.builtin.copy:
+    content: |
+      options kvmfr static_size_mb=64
+    dest: /etc/modprobe.d/lg-ansible.conf
+    group: root
+    mode: "0644"
+    owner: root
+- name: Create LG udev permissions rule
+  become: true
+  ansible.builtin.copy:
+    content: |
+      SUBSYSTEM=="kvmfr", OWNER="libvirt-qemu", GROUP="libvirt-qemu", MODE="0660"
+    dest: /etc/udev/rules.d/99-kvmfr.rules
+    group: root
+    mode: "0644"
+    owner: root
+- name: Create qemu cgroups rule
+  become: true
+  ansible.builtin.copy:
+    content: |
+      cgroup_device_acl = [
+          "/dev/null", "/dev/full", "/dev/zero",
+          "/dev/random", "/dev/urandom",
+          "/dev/ptmx", "/dev/kvm",
+          "/dev/userfaultfd",
+          "/dev/kvmfr0"
+      ]
+    dest: /etc/libvirt/qemu.conf
+    group: root
+    mode: "0644"
+    owner: root
+- name: Create lg config directory
+  become: false
+  ansible.builtin.file:
+    group: "{{ ansible_group }}"
+    mode: "0755"
+    owner: "{{ ansible_user }}"
+    path: ~/.config/looking-glass
+    state: directory
+- name: Copy LG config
+  become: false
+  ansible.builtin.copy:
+    content: |
+      [app]
+      shmFile=/dev/kvmfr0
+    dest: ~/.looking-glass-client.ini
+    group: "{{ ansible_group }}"
+    mode: "0644"
+    owner: "{{ ansible_user }}"
