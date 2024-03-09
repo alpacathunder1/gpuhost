@@ -3,6 +3,9 @@
 ### Ansible
 + Move repeated handlers to something like global? handlers
 
+### Files
++ test insync
+
 ### Fcitx
 + _**Fix the repeating keypress issue**_
   + Trying order in bashrc + export
