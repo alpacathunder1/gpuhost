@@ -29,6 +29,8 @@
     path: /home/{{ ansible_user }}/.bashrc
 - name: Autostart sway
   become: false
-  ansible.builtin.lineinfile:
-    line: if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" = "1" ]; then exec sway; fi
+  ansible.builtin.blockinfile:
     path: /home/{{ ansible_user }}/.bashrc
+    insertafter: EOF
+    marker: "# {mark} Start sway on login"
+    block: if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" = "1" ]; then exec sway; fi
