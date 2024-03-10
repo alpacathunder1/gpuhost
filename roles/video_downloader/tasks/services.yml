@@ -1,9 +1,25 @@
 ---
-- name: Ytdl-sub oneshot
+- name: Ytdl-sub service
+  notify: Reload systemd
   become: true
   ansible.builtin.copy:
-    dest: /etc/systemd/system/ytdl-sub-oneshot.service
+    dest: /etc/systemd/system/ytdl-sub.service
     group: root
     mode: "0644"
     owner: root
-    src: ytdl-sub-oneshot.service
+    src: ytdl-sub.service
+- name: Ytdl-sub timer
+  notify: Reload systemd
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/ytdl-sub.timer
+    group: root
+    mode: "0644"
+    owner: root
+    src: ytdl-sub.timer
+- name: Enable ytdl-sub.timer
+  become: true
+  ansible.builtin.service:
+    enabled: "yes"
+    name: ytdl-sub.timer
+    state: started

@@ -31,9 +31,6 @@
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions
 
-### Video Downloader
-+ Configure ytdl-sub systemd timer
-
 ### DOOM/emacs
 + Installing fonts
 
