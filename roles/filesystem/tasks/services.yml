@@ -1,14 +1,15 @@
 ---
 - name: Enable services
-  become: true
-  ansible.builtin.service:
-    enabled: "yes"
+  ansible.builtin.systemd:
+    enabled: true
     name: "{{ item }}"
     state: started
+  become: true
   with_items:
     - fstrim.timer
     - smartd.service
-- name: Enable the zfs services
+    - mdmonitor-oneshot.timer
+- name: Enable zfs services
   notify: Enable zfs import cache
   ansible.builtin.systemd:
     enabled: true
@@ -22,3 +23,4 @@
     - zfs-mount.service
     - zfs-zed.service
     - zfs-auto-snapshot-daily.timer
+    - zfs-scrub-monthly@{{ zfs_zpool }}.timer

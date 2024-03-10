@@ -19,12 +19,6 @@
     line: MAILADDR root
     path: /etc/mdadm.conf
     regex: ^MAILADDR
-- name: Enable mdmonitor-oneshot timer
-  become: true
-  ansible.builtin.service:
-    enabled: "yes"
-    name: mdmonitor-oneshot.timer
-    state: started
 - name: Limit zfs memory
   become: true
   notify: Run mkinitcpio
@@ -36,14 +30,3 @@
     group: root
     mode: "0644"
     owner: root
-- name: Add zfs scrub
-  become: true
-  ansible.builtin.cron:
-    day: "*"
-    hour: "4"
-    job: zpool scrub tank
-    minute: "1"
-    month: "*"
-    name: Weekly zpool scrub
-    user: root
-    weekday: "6"
