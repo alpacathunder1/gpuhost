@@ -1,0 +1,8 @@
+---
+- name: Enable the emacs user service
+  ansible.builtin.systemd:
+    enabled: true
+    name: emacs.service
+    state: started
+    scope: user
+  become: false
