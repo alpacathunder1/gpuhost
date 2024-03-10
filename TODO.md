@@ -39,7 +39,7 @@
 
 ### Editor
 + Auto git push/pull for Desktop notes
-+ Emacsclient (after testing) + add daemon
++ Merge editor into de role
 
 ### Virtualization
 + Play with cleaning up/learning about pci devices
