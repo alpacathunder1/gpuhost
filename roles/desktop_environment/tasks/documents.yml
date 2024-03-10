@@ -8,6 +8,7 @@
     - zathura
     - zathura-pdf-poppler
     - xournalpp
+    - pdfarranger
 - name: Create zathura config directory
   become: false
   ansible.builtin.file:
