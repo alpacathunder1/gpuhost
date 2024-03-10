@@ -41,7 +41,9 @@ tar cPpf backup.tar \
 /home/alex/.config/Signal \
 /home/alex/.config/doom \
 /home/alex/.config/emacs \
+/home/alex/.config/Insync \
 /home/alex/.local/share/vdirsyncer \
+/home/alex/.local/share/Insync \
 /home/alex/.mozilla \
 /home/alex/.thunderbird \
 /home/alex/appimage \
