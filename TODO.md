@@ -9,6 +9,9 @@
 ### Ranger
 + copy ranger conf
 
+### Emacs
++ fix fcitx5 with emacs daemon
+
 ### Gogs
 + Setup pam
 
