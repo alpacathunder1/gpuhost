@@ -20,7 +20,7 @@
   + swayidle
 
 ### Shell
-+ handy aliases
++ ctrl=r fix
 
 ### Ansible/repo
 + **separate zfs role to setup mounts before everything else**
