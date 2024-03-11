@@ -4,6 +4,7 @@ Description=Download YouTube Subscriptions
 [Timer]
 OnCalendar=daily
 Persistent=true
+RandomizedDelaySec=12
 
 [Install]
 WantedBy=timers.target
