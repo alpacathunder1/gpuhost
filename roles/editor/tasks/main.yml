@@ -3,5 +3,3 @@
   ansible.builtin.include_tasks: packages.yml
 - name: Write configuration
   ansible.builtin.include_tasks: configure.yml
-- name: Configure services
-  ansible.builtin.include_tasks: services.yml
