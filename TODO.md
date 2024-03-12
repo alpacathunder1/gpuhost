@@ -1,5 +1,11 @@
 ## TODO
 
+### Ansible
++ Move repeated handlers to something like global? handlers
+
+### Files
++ test insync
+
 ### Fcitx
 + _**Fix the repeating keypress issue**_
   + Trying order in bashrc + export
@@ -44,6 +50,9 @@
 ### Virtualization
 + Play with cleaning up/learning about pci devices
 
+## Sync
++ Configure rclone
+
 ## Improvements
 
 ### Fonts
@@ -52,8 +61,7 @@
 ### Ansible-lint
 + add an ansible-lint git hook
 
-### Swaybar
-+ Fix icons on swaybar or switch to waybar
 
-### Ansible
-+ Move repeated handlers to something like global? handlers
+### Swaybar
+
++ Fix icons on swaybar or switch to waybar
