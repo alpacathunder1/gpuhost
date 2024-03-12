@@ -27,6 +27,7 @@
 ### Desktop
 + add sway config
   + swayidle
++ Your fcitx export vars anchor thing isnt working
 
 ### Shell
 + ctrl=r fix
@@ -61,7 +62,5 @@
 ### Ansible-lint
 + add an ansible-lint git hook
 
-
-### Swaybar
-
-+ Fix icons on swaybar or switch to waybar
+### org
++ maybe switch these markdown files to org files because lol
