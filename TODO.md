@@ -4,7 +4,7 @@
 + Move repeated handlers to something like global? handlers
 
 ### Files
-+ test insync
++ Non-Insync google drive solution
 
 ### Fcitx
 + _**Fix the repeating keypress issue**_
