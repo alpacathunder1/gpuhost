@@ -15,6 +15,11 @@
   ansible.builtin.lineinfile:
     line: source ~/.bw-session
     path: /home/{{ ansible_user }}/.bashrc
+- name: Add PATH
+  become: false
+  ansible.builtin.lineinfile:
+    line: export PATH=$PATH:$HOME/.local/bin:$HOME/.config/emacs/bin
+    path: /home/{{ ansible_user }}/.bashrc
 - name: Add aliases
   become: false
   ansible.builtin.lineinfile:
