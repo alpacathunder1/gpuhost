@@ -52,7 +52,7 @@
 + Play with cleaning up/learning about pci devices
 
 ## Sync
-+ Configure rclone
++ Configure rclone/a google drive sync
 
 ## Improvements
 
