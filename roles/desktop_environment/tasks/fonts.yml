@@ -10,3 +10,11 @@
     - noto-fonts-emoji
     - noto-fonts-extra
     - terminus-font
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    - ttf-kh-dotfont 

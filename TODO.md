@@ -41,9 +41,6 @@
 + enforce efi boot order
 + enforce fstab efi partition correct umask/permissions
 
-### DOOM/emacs
-+ Installing fonts
-
 ### Editor
 + Auto git push/pull for Desktop notes
 + Merge editor into de role
@@ -53,11 +50,6 @@
 
 ## Sync
 + Configure rclone/a google drive sync
-
-## Improvements
-
-### Fonts
-+ install good monospaced japanese font
 
 ### Ansible-lint
 + add an ansible-lint git hook
