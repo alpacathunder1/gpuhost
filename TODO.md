@@ -64,3 +64,6 @@
 
 ### org
 + maybe switch these markdown files to org files because lol
+
+### Power
++ Play around with Network UPS Tools as a better alternative
