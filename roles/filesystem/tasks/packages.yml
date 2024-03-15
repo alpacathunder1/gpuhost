@@ -14,5 +14,5 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    - zfs-linux-lts
+    - zfs-dkms
     - zfs-auto-snapshot

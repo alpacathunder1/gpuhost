@@ -29,9 +29,6 @@
   + swayidle
 + Your fcitx export vars anchor thing isnt working
 
-### ZFS
-+ try zfs dkms
-
 ### Shell
 + ctrl=r fix
 
