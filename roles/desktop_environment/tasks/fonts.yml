@@ -17,4 +17,4 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    - ttf-kh-dotfont 
+    - ttf-kh-dotfont

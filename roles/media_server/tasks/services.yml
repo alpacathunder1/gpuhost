@@ -23,4 +23,5 @@
   become: true
   ansible.builtin.service:
     enabled: "yes"
+    state: started
     name: plexmediaserver.service
