@@ -1,10 +1,4 @@
 ---
-- name: Allow Gogs through ufw
-  become: true
-  community.general.ufw:
-    port: "3000"
-    proto: tcp
-    rule: allow
 - name: Create gogs config directory
   become: true
   ansible.builtin.file:
