@@ -1,0 +1,129 @@
+#+title: desktop infra
+
+** Things not covered by this
++ Initial Disk formatting
++ User creation
++ DHCP/IP Setup
++ br0/network bridging
+  + Used this command
+#+begin_src bash
+nmcli con show
+nmcli con add type bridge ifname br0
+nmcli con add type bridge-slave ifname enp5s0 master br0
+nmcli con up bridge-br0
+#+end_src
+
++ As well as disabling radios
+
+#+begin_src bash
+nmcli radio wifi off
+nmcli radio wwan off
+#+end_src
+
++ Adding mozc to fcitx5 was manual
++ Adding your printer to cups was manual
+
+** Networking note
+You had some bridging issues on the most recent clean reinstall, you had to
++ Delete the unneeded connections
+#+begin_src bash
+# This will kick you out if remote
+nmcli connection delete Wired\ connection\ 1
+#+end_src
+...and recreate the above bridge, which had `enp6s0` for the name. NetworkManager takes a bit to come up too.  This might be a bug, but you have networking working now.
+
+If I ever need to reinstall, these are the files I need to migrate
+
+#+begin_src bash
+tar cPpf backup.tar \
+/home/alex/.config/Bitwarden\ CLI \
+/home/alex/.config/Signal \
+/home/alex/.config/doom \
+/home/alex/.config/emacs \
+/home/alex/.local/share/vdirsyncer \
+/home/alex/.mozilla \
+/home/alex/.thunderbird \
+/home/alex/appimage \
+/home/alex/org \
+/var/lib/gogs \
+/var/lib/plex \
+/var/lib/postgres
+#+end_src
+
+* ZFS
+** Pool/datasets were created with:
+#+begin_src bash
+zpool create tank mirror /dev/sda /dev/sdb cache /dev/sdc
+zpool set cachefile=/etc/zfs/zpool.cache
+zfs set mountpoint=none tank 
+zfs create tank/plex
+zfs set mountpoint=/mnt/plex tank/plex
+zfs create tank/var-lib-plex
+zfs create tank/borg
+zfs set com.sun:auto-snapshot=false tank/borg
+zfs set mountpoint=/mnt/borg tank/borg
+#+end_src
+
+* Installation
+** In live usb
+#+begin_src bash
+wipefs -a /dev/nvme0n1
+wipefs -a /dev/nvme1n1
+parted /dev/nvme0n1 mklabel gpt
+parted /dev/nvme1n1 mklabel gpt
+mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n1 /dev/nvme1n1 --metadata=0.90
+parted /dev/md0 mklabel gpt
+cgdisk /dev/md0
+# Create 3 Partitions
+# 1G EF00 boot
+# 8G   8200 swap
+# -    8300 root
+mkfs.fat -F 32 /dev/md0p1
+mkswap /dev/md0p2
+parted /dev/md0p3 mklabel gpt
+mkfs.ext4 -L arch_os /dev/md0p3
+mount /dev/md0p3 /mnt
+swapon /dev/md0p2
+mkdir -p /mnt/boot
+mount /dev/md0p1 /mnt/boot
+pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-firmware python3
+genfstab -pU /mnt > /mnt/etc/fstab
+arch-chroot /mnt /bin/bash
+#+end_src
+
+** In Chroot
+#+begin_src bash
+hwclock --systohc --utc
+echo desktop > /etc/hostname
+echo LANG=en_US.UTF-8 >> /etc/locale.conf
+echo LANGUAGE=en_US >> /etc/locale.conf
+echo LC_ALL=C >> /etc/locale.conf
+useradd -m -G wheel -s /bin/bash alex
+# Set a password
+passwd alex
+# Find & uncomment the line below:
+# "Uncomment to allow members of group wheel to execute any command"
+EDITOR=nvim visudo
+# Add 'ext4' to "MODULES" and add 'mdadm_udev' to "HOOKS" *before* 'filesystems'
+nvim /etc/mkinitcpio.conf
+mkinitcpio -p linux-lts
+mkdir -p /boot/loader/entries
+echo "default arch.conf" > /boot/loader/loader.conf
+echo "timeout 4" >> /boot/loader/loader.conf
+echo "console-mode max" >> /boot/loader/loader.conf
+echo "editor no" >> /boot/loader/loader.conf
+echo "title Arch Linux" > /boot/loader/entries/arch.conf
+echo "linux /vmlinuz-linux-lts" >> /boot/loader/entries/arch.conf
+echo "initrd /intel-ucode.img" >> /boot/loader/entries/arch.conf
+echo "initrd /initramfs-linux-lts.img" >> /boot/loader/entries/arch.conf
+echo "options root=\"LABEL=arch_os\" rw" >> /boot/loader/entries/arch.conf
+bootctl install
+systemctl enable sshd NetworkManager
+#+end_src
+
+** Get out of chroot, and
+#+end_src
+umount -R /mnt
+swapoff /dev/md0p2
+poweroff
+#+end_src
