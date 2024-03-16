@@ -6,4 +6,5 @@
     use: yay
     name: "{{ item }}"
   with_items:
+    - paho-mqtt-c-git
     - powerpanel
