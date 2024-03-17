@@ -51,7 +51,7 @@
   become: true
   tags: update-vm
   community.libvirt.virt:
-    autostart: false
+    autostart: true
     command: define
     uri: qemu:///system
     xml: "{{ lookup('template', 'vm.xml.j2') }}"

@@ -4,3 +4,7 @@
   changed_when: true
   ansible.builtin.command:
     cmd: mkinitcpio -p linux-lts
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
