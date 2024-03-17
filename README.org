@@ -30,7 +30,7 @@ You had some bridging issues on the most recent clean reinstall, you had to
 # This will kick you out if remote
 nmcli connection delete Wired\ connection\ 1
 #+end_src
-...and recreate the above bridge, which had `enp6s0` for the name. NetworkManager takes a bit to come up too.  This might be a bug, but you have networking working now.
+...and recreate the above bridge, which had =enp6s0= for the name. NetworkManager takes a bit to come up too.  This might be a bug, but you have networking working now.
 
 If I ever need to reinstall, these are the files I need to migrate
 
