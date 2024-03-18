@@ -30,3 +30,4 @@
     - role: version_control_server
     - role: ddns
     - role: archives
+    - role: containers
