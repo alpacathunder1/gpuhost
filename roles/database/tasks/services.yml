@@ -4,3 +4,4 @@
   ansible.builtin.service:
     enabled: "yes"
     name: postgresql.service
+    state: started
