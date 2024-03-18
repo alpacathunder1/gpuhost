@@ -14,4 +14,3 @@
     name: "{{ item }}"
   with_items:
     - webex-bin
-    - discord_arch_electron
