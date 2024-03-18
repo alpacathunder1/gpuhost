@@ -3,7 +3,7 @@
   become: true
   changed_when: true
   ansible.builtin.command:
-    cmd: mkinitcpio -p linux-lts
+    cmd: mkinitcpio -p {{ kernel }}
 - name: Enable zfs import cache
   become: true
   changed_when: true

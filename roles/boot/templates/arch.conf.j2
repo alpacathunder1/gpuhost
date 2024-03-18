@@ -1,7 +1,7 @@
 title Arch Linux
-linux /vmlinuz-linux-lts
+linux /vmlinuz-{{ kernel }}
 initrd /intel-ucode.img
-initrd /initramfs-linux-lts.img
+initrd /initramfs-{{ kernel }}.img
 {#
 
 + Enable IOMMU:

@@ -34,9 +34,9 @@
   ansible.builtin.copy:
     content: |
       title Arch Linux (fallback initramfs)
-      linux /vmlinuz-linux-lts
+      linux /vmlinuz-{{ kernel }}
       initrd /intel-ucode.img
-      initrd /initramfs-linux-lts-fallback.img
+      initrd /initramfs-{{ kernel }}-fallback.img
       options root="LABEL=arch_os" rw
     dest: /boot/loader/entries/arch-fallback.conf
     group: root

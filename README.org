@@ -85,7 +85,7 @@ mount /dev/md0p3 /mnt
 swapon /dev/md0p2
 mkdir -p /mnt/boot
 mount /dev/md0p1 /mnt/boot
-pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-firmware python3
+pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-lts-headers linux-firmware python3
 genfstab -pU /mnt > /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
 #+end_src
