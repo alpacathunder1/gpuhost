@@ -9,6 +9,8 @@
     - sway-im
     - swaylock-effects
     - swayosd-git
+      # Note: As of 2024-03-18, This needs a build dependancy of 'wayland-protocools' that is not in the AUR package
+      # I'm using the git version for now as the main one spams dmesg, can likely be switched back later
     - wmenu-git
 - name: Install packages
   become: true
