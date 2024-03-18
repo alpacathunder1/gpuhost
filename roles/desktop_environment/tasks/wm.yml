@@ -9,13 +9,13 @@
     - sway-im
     - swaylock-effects
     - swayosd-git
+    - wmenu-git
 - name: Install packages
   become: true
   community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:
-    - wmenu
     - dmenu
     - grim
     - slurp
