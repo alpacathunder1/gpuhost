@@ -85,7 +85,7 @@ mount /dev/md0p3 /mnt
 swapon /dev/md0p2
 mkdir -p /mnt/boot
 mount /dev/md0p1 /mnt/boot
-pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux-lts linux-lts-headers linux-firmware python3
+pacstrap /mnt base base-devel bash neovim git efibootmgr intel-ucode mdadm networkmanager openssh linux linux-headers linux-firmware python3
 genfstab -pU /mnt > /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
 #+end_src
@@ -105,16 +105,16 @@ passwd alex
 EDITOR=nvim visudo
 # Add 'ext4' to "MODULES" and add 'mdadm_udev' to "HOOKS" *before* 'filesystems'
 nvim /etc/mkinitcpio.conf
-mkinitcpio -p linux-lts
+mkinitcpio -p linux
 mkdir -p /boot/loader/entries
 echo "default arch.conf" > /boot/loader/loader.conf
 echo "timeout 4" >> /boot/loader/loader.conf
 echo "console-mode max" >> /boot/loader/loader.conf
 echo "editor no" >> /boot/loader/loader.conf
 echo "title Arch Linux" > /boot/loader/entries/arch.conf
-echo "linux /vmlinuz-linux-lts" >> /boot/loader/entries/arch.conf
+echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
 echo "initrd /intel-ucode.img" >> /boot/loader/entries/arch.conf
-echo "initrd /initramfs-linux-lts.img" >> /boot/loader/entries/arch.conf
+echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
 echo "options root=\"LABEL=arch_os\" rw" >> /boot/loader/entries/arch.conf
 bootctl install
 systemctl enable sshd NetworkManager

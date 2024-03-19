@@ -8,7 +8,7 @@ ansible_group: alex
 gpu_audio_id: 10de:1aef
 gpu_video_id: 10de:2208
 hostname: desktop
-kernel: linux-lts
+kernel: linux
 lan_domain: desktop
 mailrise_domain: mailrise
 usb_card_id: 1912:0014
