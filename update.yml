@@ -1,0 +1,5 @@
+---
+- name: Updates machines
+  hosts: gpuhost
+  roles:
+    - role: updates

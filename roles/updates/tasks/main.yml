@@ -1,0 +1,3 @@
+---
+- name: Update ytdl-sub
+  ansible.builtin.include_tasks: ytdl-sub.yml

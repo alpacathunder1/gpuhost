@@ -1,0 +1,11 @@
+---
+- name: Upgrade packages
+  become: true
+  community.general.pipx:
+    name: "{{ item }}"
+    state: upgrade
+  environment:
+    PIPX_BIN_DIR: /usr/local/bin/
+    PIPX_HOME: /var/lib/pipx/
+  with_items:
+    - ytdl-sub
