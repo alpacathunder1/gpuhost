@@ -6,7 +6,7 @@
     state: present
   with_items:
     - neovim
-    - emacs
+    - emacs-nativecomp
     - fd
     - ripgrep
     - cmake
@@ -26,3 +26,14 @@
   with_items:
     - nano
     - vim
+- name: Install packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ item }}"
+  with_items:
+    # I had to manually install nkif-git first as a make dependancy, then remove
+    # it
+    - nkif-git
+    - cmigemo-git
