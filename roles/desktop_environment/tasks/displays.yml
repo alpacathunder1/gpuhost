@@ -21,8 +21,9 @@
 - name: Create LG modprobe
   become: true
   ansible.builtin.copy:
+   # Calculated from: https://aur.archlinux.org/packages/glasscalc
     content: |
-      options kvmfr static_size_mb=64
+      options kvmfr static_size_mb=32
     dest: /etc/modprobe.d/lg-ansible.conf
     group: root
     mode: "0644"
