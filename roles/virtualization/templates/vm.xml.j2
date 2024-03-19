@@ -397,6 +397,11 @@ qemu line is needed for the extra options
     <qemu:arg value='-device'/>
     <qemu:arg value='{"driver":"ivshmem-plain","id":"shmem0","memdev":"looking-glass"}'/>
     <qemu:arg value='-object'/>
-    <qemu:arg value='{"qom-type":"memory-backend-file","id":"looking-glass","mem-path":"/dev/kvmfr0","size":67108864,"share":true}'/>
+    {#
+    Take the size allocated for the kvmfr (32M in this case) and
+    "size_in_MB x 1024 x 1024 = size_in_bytes"
+    https://looking-glass.io/docs/B5.0.1/module/#using-dkms-recommended
+    #}
+    <qemu:arg value='{"qom-type":"memory-backend-file","id":"looking-glass","mem-path":"/dev/kvmfr0","size":33554432,"share":true}'/>
   </qemu:commandline>
 </domain>
