@@ -19,6 +19,7 @@
     state: present
   with_items:
     - dmenu
+    - waybar
     - grim
     - slurp
     - xorg-xwayland
