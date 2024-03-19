@@ -7,3 +7,10 @@
   with_items:
     - foot
     - tmux
+- name: Add aliases
+  become: false
+  ansible.builtin.lineinfile:
+    line: "{{ item }}"
+    path: /home/{{ ansible_user }}/.bashrc
+  with_items:
+    - export TERM=xterm-256color
