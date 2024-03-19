@@ -1,5 +1,5 @@
 ---
-- name: Playbook for gpuhost
+- name: Playbook
   hosts: gpuhost
   vars_files:
     - vars/public.yml
