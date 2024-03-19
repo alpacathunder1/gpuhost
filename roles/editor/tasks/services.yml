@@ -1,4 +1,12 @@
 ---
+- name: Emacs systemd unit
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/user/emacs.service
+    group: root
+    mode: "0644"
+    owner: root
+    src: emacs.service
 - name: Enable the emacs user service
   ansible.builtin.systemd:
     enabled: true
