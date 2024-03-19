@@ -95,3 +95,20 @@
     name: vdirsyncer sync
     user: "{{ ansible_user }}"
     weekday: "*"
+- name: Add aliases
+  become: false
+  ansible.builtin.lineinfile:
+    line: "{{ item }}"
+    path: /home/{{ ansible_user }}/.bashrc
+  with_items:
+    - alias vi="emacsclient -t"
+    - alias vim="emacsclient -t"
+    - alias nvim="emacsclient -t"
+- name: Editor/Visual variables
+  become: false
+  ansible.builtin.lineinfile:
+    line: "{{ item }}"
+    path: /home/{{ ansible_user }}/.bashrc
+  with_items:
+    - export EDITOR="emacsclient -t"
+    - export VISUAL="emacsclient -t"
