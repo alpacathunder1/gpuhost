@@ -104,6 +104,7 @@
     - alias vi="emacsclient -t"
     - alias vim="emacsclient -t"
     - alias nvim="emacsclient -t"
+    - alias emacs="emacsclient -t"
 - name: Editor/Visual variables
   become: false
   ansible.builtin.lineinfile:
