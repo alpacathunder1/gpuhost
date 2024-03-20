@@ -6,7 +6,6 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    - nwg-displays
     - looking-glass
     - looking-glass-module-dkms
 - name: Create kvmfr module
