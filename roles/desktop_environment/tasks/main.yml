@@ -11,8 +11,8 @@
   ansible.builtin.include_tasks: displays.yml
 - name: Install documents
   ansible.builtin.include_tasks: documents.yml
-- name: Install communication
-  ansible.builtin.include_tasks: communication.yml
+#- name: Install communication
+#  ansible.builtin.include_tasks: communication.yml
 - name: Install media
   ansible.builtin.include_tasks: media.yml
 - name: Install language

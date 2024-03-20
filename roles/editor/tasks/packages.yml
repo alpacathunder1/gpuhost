@@ -33,7 +33,7 @@
     use: yay
     name: "{{ item }}"
   with_items:
-    # I had to manually install nkif-git first as a make dependancy, then remove
+    # I had to manually install nkf-git first as a make dependancy, then remove
     # it
-    - nkif-git
+    - nkf-git
     - cmigemo-git
