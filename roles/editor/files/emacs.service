@@ -5,9 +5,8 @@ Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 [Service]
 Type=notify
 ExecStart=/usr/bin/emacs --fg-daemon
-
 SuccessExitStatus=15
-
+TimeoutSec=12
 Restart=always
 
 [Install]
