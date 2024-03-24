@@ -18,3 +18,12 @@
     name: "{{ item }}"
   with_items:
     - ttf-kh-dotfont
+- name: Set default TTY font
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/vconsole.conf"
+    content: "FONT=ter-112n"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Run mkinitcpio
