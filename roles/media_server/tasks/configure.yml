@@ -8,7 +8,7 @@
 - name: Enable plex pacman hook
   become: true
   ansible.builtin.file:
-    src: /usr/share/doc/plex-media-server-plexpass/plexmediaserver.hook
+    src: /usr/share/doc/plex-media-server/plexmediaserver.hook
     dest: /etc/pacman.d/hooks/plexmediaserver.hook
     owner: root
     group: root
