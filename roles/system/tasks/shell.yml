@@ -29,3 +29,4 @@
     - alias gca="git commit -av"
     - alias gp="git pull -v;git push -v"
     - alias gs="git status"
+    - alias gd="git diff"
