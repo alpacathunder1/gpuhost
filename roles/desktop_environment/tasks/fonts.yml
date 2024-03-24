@@ -22,7 +22,7 @@
   become: true
   ansible.builtin.copy:
     dest: "/etc/vconsole.conf"
-    content: "FONT=ter-112n"
+    content: "FONT=ter-116n"
     owner: root
     group: root
     mode: "0644"
