@@ -1,7 +1,20 @@
 ---
-- name: Enable the borgmatic timer
-  ansible.builtin.systemd:
-    enabled: true
-    name: borgmatic.timer
-    state: started
+# Currently the borgmatic service (on Arch?) just hangs
+#
+#- name: Enable the borgmatic timer
+#  ansible.builtin.systemd:
+#    enabled: true
+#    name: borgmatic.timer
+#    state: started
+#  become: true
+- name: Add systemd healthcheck
   become: true
+  ansible.builtin.cron:
+    day: "*"
+    hour: "2"
+    job: borgmatic -C -v0 -p
+    minute: "05"
+    month: "*"
+    name: borgmatic
+    user: root
+    weekday: "*"
