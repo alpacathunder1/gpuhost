@@ -7,12 +7,12 @@
 #    name: borgmatic.timer
 #    state: started
 #  become: true
-- name: Add systemd healthcheck
+- name: Add borgmatic cronjob
   become: true
   ansible.builtin.cron:
     day: "*"
     hour: "2"
-    job: borgmatic -C -v0 -p
+    job: borgmatic -C -v0 -p |& grep -v 'Excluding special files to prevent Borg from hanging'
     minute: "05"
     month: "*"
     name: borgmatic
